@@ -4,11 +4,13 @@ import { VerifyToken } from "../../middleware/verifyToken.js";
 import upload from '../../utils/multer.utils.js';
 import { userValidator } from "../../validator/functions/admin_user.validator.js";
 import { userValidator as professorValidator } from "../../validator/functions/professor_user.validator.js";
+import { VerificarRoles } from "../../middleware/verifyRol.js";
+import { roles_routes } from "../../config/config.js";
 
 const route = express.Router();
 
 route.get("/user", VerifyToken, userController.getAllUsers);
-route.get("/user/:id", VerifyToken, userController.getUser);
+route.get("/user/:id", VerifyToken, VerificarRoles([roles_routes.USUARIOS.GET_ALL_USUARIOS]), userController.getUser);
 route.post("/user/administrator", VerifyToken, userValidator.admin_save, userController.addAdminUser);
 route.post("/user/professor", VerifyToken, professorValidator.professor_save, userController.addProfessorUser);
 route.delete("/user/:id", VerifyToken, userController.deleteProfessorUser);

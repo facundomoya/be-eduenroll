@@ -60,3 +60,5 @@ No se "llaman" directamente entre sí, pero se complementan:
 auth.services.js → emite el token
 
 verifyToken.js → valida ese token
+
+assets - seeders
