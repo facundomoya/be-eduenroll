@@ -18,6 +18,6 @@ export const admin_userSchema = z.object({
         }),
         email: z.string().email(),
         age: z.number().min(18).max(99),
-        administratorId: z.number().int().positive()
+        administratorId: z.number().int().positive().min(3)
     })
 });

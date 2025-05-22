@@ -18,6 +18,6 @@ export const professor_userSchema = z.object({
         }),
         email: z.string().email(),
         age: z.number().min(18).max(99),
-        professorId: z.number().int().positive()
+        professorId: z.number().int().positive().min(3)
     })
 });
