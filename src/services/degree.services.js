@@ -32,9 +32,19 @@ const getDegree = async(params) => {
   } catch (error) {
     return { error: error.message };
   }
-}
+};
+
+const addDegree = async (params) => {
+  try {
+    const data = await Degree.create(params.degree);
+    return { data };
+  } catch (error) {
+    return { error: error.message };
+  }
+};
 
 export const degreeServices = {
  getAllDegrees,
- getDegree
+ getDegree,
+ addDegree
 };

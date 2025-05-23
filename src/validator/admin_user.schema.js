@@ -10,10 +10,10 @@ export const admin_userSchema = z.object({
         password: z.string().min(6).max(20)
     }),
     admin: z.object({
-        name: z.string().min(3).max(20).refine(startsWithUppercase, {
+        name: z.string().min(3).max(30).refine(startsWithUppercase, {
             message: "La primera letra del nombre debe estar en mayúscula",
         }),
-        lastname: z.string().min(3).max(20).refine(startsWithUppercase, {
+        lastname: z.string().min(3).max(30).refine(startsWithUppercase, {
             message: "La primera letra del apellido debe estar en mayúscula",
         }),
         email: z.string().email(),
