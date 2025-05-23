@@ -18,7 +18,23 @@ const getAllDegrees = async (params) => {
   }
 };
 
+const getDegree = async(params) => {
+  const { id } = params;
+  const data_search = {};
+
+  id && (data_search.id = id);
+
+  try {
+    const data = await Degree.findOne({
+      where: data_search, //paso el objeto completo seria como un "SELECT * FROM degree WHERE id = 3"
+    });
+    return { data };
+  } catch (error) {
+    return { error: error.message };
+  }
+}
 
 export const degreeServices = {
- getAllDegrees
+ getAllDegrees,
+ getDegree
 };
