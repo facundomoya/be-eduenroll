@@ -21,7 +21,7 @@ const getUser = async (req, res) => {
   }
 
   return res.status(200).json({ data, code: 200 });
-}
+};
 
 const addProfessorUser = async (req, res) => {
   const request = mixParams(req);
@@ -32,7 +32,7 @@ const addProfessorUser = async (req, res) => {
   }
 
   return res.status(200).json({ data, code: 200 });
-}
+};
 
 const addAdminUser = async (req, res) => {
 const request = mixParams(req);
@@ -42,7 +42,7 @@ if(error){
 }
 
 return res.status(200).json({ data, code: 200 });
-} 
+};
 
 const deleteProfessorUser = async (req, res) => {
   const params = mixParams(req);
@@ -53,7 +53,7 @@ const deleteProfessorUser = async (req, res) => {
   }
 
   return res.status(200).json({ data, code: 200 });
-}
+};
 
 const updateUser = async (req, res) => {
   const params = mixParams(req);
@@ -64,7 +64,7 @@ const updateUser = async (req, res) => {
   }
 
   return res.status(200).json({ data, code: 200 });
-}
+};
 
 const getPdf = async (req, res) => {
 
@@ -77,7 +77,7 @@ const getPdf = async (req, res) => {
   }
 
   return res.status(200).json({ data, code: 200 });
-} 
+};
 
 const downloadPdf = async (req, res) => {
   const { filename } = req.params;
@@ -93,7 +93,6 @@ const downloadPdf = async (req, res) => {
   res.setHeader('Content-Disposition', `attachment; filename="${filename}"`);
   return res.status(200).send(fileContent);
 };
-
 
 export const userController = {
   getAllUsers,

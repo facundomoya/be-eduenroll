@@ -13,9 +13,6 @@ const getAllUsers = async(params) => {
   user_name && (data_search.user_name = user_name);
   password && (data_search.password = password);
 
- 
-
-
     try {
         const data = await User.findAll({
           where: data_search
@@ -37,7 +34,7 @@ const getUser = async(params) => {
   } catch (error) {
     return { error: error.message };
   }
-}
+};
 
 const addProfessorUser = async(request) => {
   try {
@@ -50,7 +47,7 @@ const addProfessorUser = async(request) => {
   } catch (error) {
     return { error: error.message };
   }
-}
+};
 
 const addAdminUser = async(request) => {
   try {
@@ -63,7 +60,7 @@ const addAdminUser = async(request) => {
   } catch (error) {
     return { error: error.message };
   }
-} 
+};
 
 const deleteProfessorUser = async(params) => {
   try {
@@ -76,7 +73,7 @@ const deleteProfessorUser = async(params) => {
   } catch (error) {
     return { error: error.message };
   }
-}
+};
 
 const updateUser = async(params) => {
   try {
@@ -93,7 +90,7 @@ const updateUser = async(params) => {
   } catch (error) {
     return { error: error.message };
   }
-}
+};
 
 const getPdf = async (filename) => { 
   const __filename = fileURLToPath(import.meta.url);
@@ -156,7 +153,6 @@ const getPdfForDownload = async (filename) => {
     return { error: error.message };
   }
 };
-
 
 export const userServices = {
     getAllUsers,

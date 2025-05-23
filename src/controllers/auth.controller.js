@@ -12,7 +12,6 @@ const login = async (req, res) => {
   } catch (error) {
     return res.status(500).json({ error: error.message, code: 500 });
   }
-  
 };
 
 export const authController = {

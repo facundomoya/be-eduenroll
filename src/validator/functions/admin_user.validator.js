@@ -10,7 +10,7 @@ const admin_save = async (req, res, next) => {
   } catch (error) {
     return res.status(500).json({ error: error.message, code: 500 });
   }
-}
+};
 
 export const userValidator = {
   admin_save

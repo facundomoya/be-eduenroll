@@ -10,7 +10,7 @@ const getAllDegrees = async (req, res) => {
   }
 
   return res.status(200).json({ data, code: 200 });
-}
+};
 
 const getDegree = async (req, res) => {
   const params = mixParams(req);
@@ -21,7 +21,7 @@ const getDegree = async (req, res) => {
   }
 
   return res.status(200).json({ data, code: 200 });
-}
+};
 
 const addDegree = async (req, res) => {
   const params = mixParams(req);
@@ -32,8 +32,7 @@ const addDegree = async (req, res) => {
   }
 
   return res.status(200).json({ data, code: 200 });
-}
-
+};
 
 export const degreeController = {
   getAllDegrees,
