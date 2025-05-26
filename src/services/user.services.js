@@ -37,34 +37,46 @@ const getUser = async(params) => {
 };
 
 const addProfessorUser = async(request) => {
+  let data;
   try {
-    const data = await User.create(request.user);
+    data = await User.create(request.user);
     const data_professor = await Professor.create({
       ...request.professor,
       id_user: data.id
     });
     return { data, data_professor };
   } catch (error) {
+    try{
+     await User.destroy({ where: { id: data.id } });
+    }catch(destroyError){
+    console.error('Error al eliminar el usuario tras fallo en creación de admin:', destroyError);
+    }
     return { error: error.message };
   }
 };
 
 const addAdminUser = async(request) => {
+  let data;
   try {
-    const data = await User.create(request.user);
+    data = await User.create(request.user);
     const data_admin = await Administrator.create({
      ...request.admin,
       id_user: data.id
     });
     return { data, data_admin };
   } catch (error) {
+      try {
+        await User.destroy({ where: { id: data.id } });
+      } catch (destroyError) {
+        console.error('Error al eliminar el usuario tras fallo en creación de admin:', destroyError);
+      }
     return { error: error.message };
   }
 };
 
 const deleteProfessorUser = async(params) => {
   try {
-    const data= await User.destroy({
+    const data = await User.destroy({
       where: {
         id: params.id
       }

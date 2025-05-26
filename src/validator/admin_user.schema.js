@@ -17,7 +17,7 @@ export const admin_userSchema = z.object({
             message: "La primera letra del apellido debe estar en mayúscula",
         }),
         email: z.string().email(),
-        age: z.number().min(18).max(99),
+        age: z.number().min(1).max(99),
         administratorId: z.number().int().positive().min(3)
     })
 });
