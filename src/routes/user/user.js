@@ -11,7 +11,7 @@ route.get("/user", VerifyToken, userController.getAllUsers);
 route.get("/user/:id", VerifyToken, userController.getUser);
 route.post("/user/administrator", VerifyToken, userValidator.admin_save, userController.addAdminUser);
 route.post("/user/professor", VerifyToken, professorValidator.professor_save, userController.addProfessorUser);
-route.delete("/user/:id", VerifyToken, userController.deleteProfessorUser);
+route.delete("/user/:id", VerifyToken, userController.deleteUser);
 route.put("/user/:id", VerifyToken, userController.updateUser);
 route.get("/user/pdf/download/:filename", VerifyToken, userController.downloadPdf);
 route.get("/user/pdf/:filename", VerifyToken, userController.getPdf);

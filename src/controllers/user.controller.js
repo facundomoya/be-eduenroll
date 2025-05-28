@@ -44,7 +44,7 @@ if(error){
 return res.status(200).json({ data, code: 200 });
 };
 
-const deleteProfessorUser = async (req, res) => {
+const deleteUser = async (req, res) => {
   const params = mixParams(req);
   const { data, error } = await userServices.deleteProfessorUser(params);
 
@@ -86,7 +86,7 @@ const downloadPdf = async (req, res) => {
 
   if (error) {
     return res.status(404).json({ error, code: 404 });
-  }
+  };
 
   res.setHeader('Content-Type', 'application/pdf');
   //attachment fuerza la descarga
@@ -99,7 +99,7 @@ export const userController = {
   addProfessorUser,
   addAdminUser,
   getUser,
-  deleteProfessorUser,
+  deleteUser,
   updateUser,
   getPdf,
   downloadPdf

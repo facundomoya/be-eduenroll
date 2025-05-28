@@ -74,7 +74,7 @@ const addAdminUser = async(request) => {
   }
 };
 
-const deleteProfessorUser = async(params) => {
+const deleteUser = async(params) => {
   try {
     const data = await User.destroy({
       where: {
@@ -171,8 +171,8 @@ export const userServices = {
     addProfessorUser,
     addAdminUser,
     getUser,
-    deleteProfessorUser,
     updateUser,
     getPdf,
+    deleteUser,
     getPdfForDownload
 };
