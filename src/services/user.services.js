@@ -49,10 +49,10 @@ const addProfessorUser = async(request) => {
     try{
      await User.destroy({ where: { id: data.id } });
     }catch(destroyError){
-    console.error('Error al eliminar el usuario tras fallo en creación de admin:', destroyError);
+    console.error('Error al eliminar el usuario tras fallo en creación de profesor:', destroyError);
     }
     return { error: error.message };
-  }
+  }   
 };
 
 const addAdminUser = async(request) => {
