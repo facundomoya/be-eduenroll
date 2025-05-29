@@ -2,6 +2,7 @@ import { DataTypes } from "sequelize";
 import { sequelize } from "../database/connect.js";
 import Administrator from "./administrator.model.js";
 import Professor from "./professor.model.js";
+import UserPdf from "./user_pdf.model.js";
 
 const User = sequelize.define(
   "User",
@@ -46,8 +47,18 @@ User.hasOne(Professor, {
 
 Professor.belongsTo(User, {
   foreignKey: "id_user",
-  targetKey: "id",
-  onDelete: 'CASCADE', // Esto borra el Professor si borras el User
+  targetKey: "id"
+});
+
+//User - UserPdf
+User.hasMany(UserPdf, {
+  foreignKey: 'userId',  
+  sourceKey: 'id',       
+});
+
+UserPdf.belongsTo(User, {
+  foreignKey: 'userId',  
+  targetKey: 'id'
 });
 
 export default User;
