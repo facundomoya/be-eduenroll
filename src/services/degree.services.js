@@ -34,6 +34,27 @@ const getDegree = async(params) => {
   }
 };
 
+const updateDegree = async (params) => {
+  const { id, degree } = params;
+  const data_search = {};
+
+  id && (data_search.id = id);
+
+  try {
+    const [updated] = await Degree.update(degree, {
+      where: data_search,
+    });
+
+    if (updated) {
+      const updatedDegree = await Degree.findOne({ where: data_search });
+      return { data: updatedDegree };
+    }
+    throw new Error("Degree not found");
+  } catch (error) {
+    return { error: error.message };
+  }
+};
+
 const addDegree = async (params) => {
   try {
     const data = await Degree.create(params.degree);
@@ -46,5 +67,6 @@ const addDegree = async (params) => {
 export const degreeServices = {
  getAllDegrees,
  getDegree,
- addDegree
+ addDegree,
+ updateDegree
 };

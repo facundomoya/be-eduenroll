@@ -34,8 +34,20 @@ const addDegree = async (req, res) => {
   return res.status(200).json({ data, code: 200 });
 };
 
+const updateDegree = async (req, res) => {
+  const params = mixParams(req);
+  const { data, error } = await degreeServices.updateDegree(params);
+
+  if (error) {
+    return res.status(500).json({ error, code: 500 });
+  };
+
+  return res.status(200).json({ data, code: 200 });
+};
+
 export const degreeController = {
   getAllDegrees,
   getDegree,
-  addDegree
+  addDegree,
+  updateDegree
 };

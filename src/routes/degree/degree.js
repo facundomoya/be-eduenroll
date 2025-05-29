@@ -8,5 +8,6 @@ const route = express.Router();
 route.get("/degree", VerifyToken, degreeController.getAllDegrees);
 route.get("/degree/:id", VerifyToken, degreeController.getDegree);
 route.post("/degree", VerifyToken, degreeValidator.degree_save, degreeController.addDegree);
+route.put("/degree/:id", VerifyToken, degreeValidator.degree_save, degreeController.updateDegree);
 
 export default route;
