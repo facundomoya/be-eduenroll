@@ -3,6 +3,7 @@ import path from 'path';
 import { fileURLToPath } from 'url';
 import { dirname } from 'path';
 import fs from 'fs';
+import UserPdf from '../models/user_pdf.model.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
@@ -38,9 +39,8 @@ const uploadMiddleware = multer({
   limits: { fileSize: 5 * 1024 * 1024 } 
 }).single('archivo');
 
-
 const upload = (req, res, next) => {
-  uploadMiddleware(req, res, (err) => {
+  uploadMiddleware(req, res, async (err) => {
     if (err) {
       if (err.message === 'Solo se permiten archivos PDF') {
         return res.status(400).json({ error: err.message });
@@ -50,11 +50,25 @@ const upload = (req, res, next) => {
       }
       return res.status(500).json({ error: `Error al procesar el archivo: ${err.message}` });
     }
-    
     if (!req.file) {
       return res.status(400).json({ error: 'No se proporcionó ningún archivo' });
     }
-    next();
+
+    const userId = req.body.userId;
+    if (!userId) {
+      return res.status(400).json({ error: 'Falta el userId en el cuerpo de la solicitud' });
+    }
+    try {
+      const newPdf = await UserPdf.create({
+        pdf_name: req.file.originalname,
+        userId: userId
+      });
+
+      res.status(201).json({ message: 'Archivo PDF subido y registrado correctamente', pdf: newPdf });
+    } catch (dbError) {
+      console.error('Error al guardar en la base de datos:', dbError);
+      return res.status(500).json({ error: 'Error al guardar el archivo en la base de datos' });
+    }
   });
 };
 

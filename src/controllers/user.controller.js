@@ -66,33 +66,6 @@ const updateUser = async (req, res) => {
   return res.status(200).json({ data, code: 200 });
 };
 
-const getPdf = async (req, res) => {
-
-  const { filename } = req.params;
-
-  const { data, error } = await userServices.getPdf(filename);
-
-  if (error) {
-    return res.status(404).json({ error, code: 404 });
-  }
-
-  return res.status(200).json({ data, code: 200 });
-};
-
-const downloadPdf = async (req, res) => {
-  const { filename } = req.params;
-
-  const { fileContent, error } = await userServices.getPdfForDownload(filename);
-
-  if (error) {
-    return res.status(404).json({ error, code: 404 });
-  };
-
-  res.setHeader('Content-Type', 'application/pdf');
-  //attachment fuerza la descarga
-  res.setHeader('Content-Disposition', `attachment; filename="${filename}"`);
-  return res.status(200).send(fileContent);
-};
 
 export const userController = {
   getAllUsers,
@@ -100,7 +73,5 @@ export const userController = {
   addAdminUser,
   getUser,
   deleteUser,
-  updateUser,
-  getPdf,
-  downloadPdf
+  updateUser
 };

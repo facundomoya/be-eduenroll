@@ -104,75 +104,11 @@ const updateUser = async(params) => {
   }
 };
 
-const getPdf = async (filename) => { 
-  const __filename = fileURLToPath(import.meta.url);
-  const __dirname = dirname(__filename);
-  
-  try {
-    if (!filename) throw new Error("Nombre de archivo no proporcionado");
-    
-    if (filename.includes('..') || filename.includes('/') || filename.includes('\\')) {
-      throw new Error("Nombre de archivo inválido");
-    }
-
-    console.log('__dirname:', __dirname);
-    console.log('Ruta completa:', join(__dirname, 'uploads', filename));
-    // Usa join importado (no path.join)
-    const uploadsDir = join(__dirname, '../uploads');
-    const filePath = join(uploadsDir, filename);
-    
-    // Verificación de seguridad
-    if (!filePath.startsWith(uploadsDir)) {
-      throw new Error("Intento de acceso no permitido");
-    }
-
-    const fileContent = readFileSync(filePath);
-    
-    return { 
-      data: {
-        //content: fileContent.toString('base64'),
-        filename: filename,
-        mimeType: 'application/pdf'
-      } 
-    };
-  } catch (error) {
-    return { error: error.message };
-  }
-};
-
-const getPdfForDownload = async (filename) => { 
-  const __filename = fileURLToPath(import.meta.url);
-  const __dirname = dirname(__filename);
-
-  try { 
-    if (!filename) throw new Error("Nombre de archivo no proporcionado");
-
-    if (filename.includes('..') || filename.includes('/') || filename.includes('\\')) {
-      throw new Error("Nombre de archivo inválido");
-    }
-
-    const uploadsDir = join(__dirname, '../uploads');
-    const filePath = join(uploadsDir, filename);
-
-    if (!filePath.startsWith(uploadsDir)) {
-      throw new Error("Intento de acceso no permitido");
-    }
-
-    const fileContent = readFileSync(filePath);
-
-    return { fileContent };
-  } catch (error) {
-    return { error: error.message };
-  }
-};
-
 export const userServices = {
     getAllUsers,
     addProfessorUser,
     addAdminUser,
     getUser,
     updateUser,
-    getPdf,
-    deleteUser,
-    getPdfForDownload
+    deleteUser
 };
