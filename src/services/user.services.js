@@ -1,10 +1,16 @@
 import {sequelize} from '../database/connect.js';
 import User from '../models/user.model.js';
+import UserPdf from '../models/user_pdf.model.js';
 import Administrator from '../models/administrator.model.js';
 import Professor from '../models/professor.model.js';
 import { fileURLToPath } from 'url';
 import { dirname, join } from 'path'; // Importa join y dirname de path
 import { readFileSync } from 'fs';
+import path from 'path';
+import fs from 'fs';
+
+const __filename = fileURLToPath(import.meta.url); // Convierte la URL del módulo a una ruta de archivo, sirve para las funciones del PDF
+const __dirname = dirname(__filename); // Obtiene el directorio actual, sirve para las funciones del PDF
 
 const getAllUsers = async(params) => {
   const { user_name, password } = params;
@@ -104,11 +110,35 @@ const updateUser = async(params) => {
   }
 };
 
+const getUserPdf = async (userId) => {
+  try {
+    const pdf = await UserPdf.findOne({ where: { userId } });
+
+    if (!pdf) {
+      return { error: 'No se encontró un PDF para este usuario' };
+    }
+
+    const filename = pdf.pdf_name;
+    const uploadsDir = path.join(__dirname, '../uploads'); // Asegúrate de que la ruta sea correcta
+    const filePath = path.join(uploadsDir, filename);
+
+    if (!fs.existsSync(filePath)) {
+      return { error: 'El archivo no existe en el servidor' };
+    }
+
+    return { data: { filePath, filename } };
+  } catch (err) {
+    return { error: 'Error al buscar el PDF en la base de datos'};
+        
+  }
+};
+
 export const userServices = {
     getAllUsers,
     addProfessorUser,
     addAdminUser,
     getUser,
+    getUserPdf,
     updateUser,
     deleteUser
 };

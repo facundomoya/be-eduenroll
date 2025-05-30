@@ -13,7 +13,7 @@ route.post("/user/administrator", VerifyToken, userValidator.admin_save, userCon
 route.post("/user/professor", VerifyToken, professorValidator.professor_save, userController.addProfessorUser);
 route.delete("/user/:id", VerifyToken, userController.deleteUser);
 route.put("/user/:id", VerifyToken, userController.updateUser);
-
+route.get('/user/pdf/:userId', VerifyToken, userController.getUserPdf);
 
 route.post("/user/pdf", VerifyToken, upload, (req, res) => { //agrega el pdf a la BD y a la carpeta uploads
   res.json({
