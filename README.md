@@ -106,7 +106,7 @@ eduenroll/
 
 ### User Management
 
-```http
+```bash
 GET    /users                → Get all users  
 GET    /users/:id            → Get user by ID  
 POST   /users/professor      → Create a professor  
@@ -117,7 +117,7 @@ DELETE /users/:id            → Delete a user
 
 ### Degree Management
 
-```http
+```bash
 GET    /degrees              → Get all degrees  
 GET    /degrees/:id          → Get degree by ID  
 POST   /degrees              → Create a degree  
@@ -126,8 +126,8 @@ PUT    /degrees/:id          → Update a degree
 
 ### File Operations
 
-```http
-GET    /users/:id/pdf        → Download a user's PDF  
+```bash
+GET    /users/:id/pdf        → Download a users PDF
 POST   /upload               → Upload a PDF file
 ```
 
@@ -135,13 +135,13 @@ POST   /upload               → Upload a PDF file
 
 1. Clone the Repository
 
-```http
+```bash
 git clone https://github.com/username/eduenroll.git
 ```
 
 2. Install Dependencies
 
-```http
+```bash
 npm install
 ```
 
@@ -149,7 +149,7 @@ npm install
 
 - Create a .env file in the root directory with your database credentials:
 
-```http
+```env
 DB_HOST=localhost
 DB_USER=your_username
 DB_PASS=your_password
@@ -158,7 +158,7 @@ DB_NAME=eduenroll
 
 4. Database Setup (Sequelize)
 
-```http
+```bash
 npx sequelize-cli db:create
 npx sequelize-cli db:migrate
 npx sequelize-cli db:seed:all
@@ -166,7 +166,7 @@ npx sequelize-cli db:seed:all
 
 5. Run the Development Server
 
-```http
+```bash
 npm run dev
 ```
 
@@ -174,6 +174,6 @@ npm run dev
 
 ## Project Status
 
-In progress
+In progress 🚧
 
 This project is currently under development as a backend learning exercise. Contributions and improvements are welcome.
