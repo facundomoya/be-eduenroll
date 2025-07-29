@@ -56,6 +56,14 @@ No frontend is included.
 
 ---
 
+## Code Management
+
+The project was developed using a simple Git workflow, where:
+
+- **Single active branch**: `master` (or `main` in modern repositories)
+
+---
+
 ## Learning Objectives
 
 This project allows hands-on practice with:
@@ -169,6 +177,12 @@ npx sequelize-cli db:seed:all
 ```bash
 npm run dev
 ```
+
+---
+
+## Development Team
+
+This project was developed by Facundo Moya, a student of **Information Systems Engineering** at the **Universidad Tecnológica Nacional - Facultad Regional Tucumán (UTN-FRT)**.
 
 ---
 
