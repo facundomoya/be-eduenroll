@@ -25,7 +25,7 @@ export const authServices = {
           id: user[0]?.id, 
           user_name: user[0]?.user_name,
         },
-        config.JWT_SECRET,
+        config.jwt.jwt,
         { expiresIn: '1h' }
       );
 

@@ -21,7 +21,8 @@ const getAllUsers = async(params) => {
 
     try {
         const data = await User.findAll({
-          where: data_search
+          where: data_search,
+          attributes: { exclude: ['password'] }
         });
         return { data };
       } catch (error) {

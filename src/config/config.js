@@ -1,8 +1,13 @@
 export const config = {
-    JWT_SECRET: 'miclave', //password
-    ACTIVATE_LOGIN: true,
-    DB_HOST: 'localhost',
-    DB_USER: 'root',
-    DB_PASSWORD: '1234',
-    DB_NAME: 'eduenroll',
+      dataBase: {
+        host: process.env.DB_HOST,
+        port: process.env.DB_PORT ,
+        user: process.env.DB_USER,
+        password: process.env.DB_PASSWORD,
+        name: process.env.DB_NAME,
+        activate_login: process.env.ACTIVATE_LOGIN
+    },
+    jwt:{
+        jwt: process.env.JWT
+    }
   };

@@ -99,6 +99,7 @@ This project allows hands-on practice with:
 ```text
 eduenroll/
 ├── src/
+│   ├── config           # Config file   
 │   ├── controllers/     # Route handlers
 │   ├── services/        # Business logic layer
 │   ├── models/          # Sequelize models
@@ -158,10 +159,13 @@ npm install
 - Create a .env file in the root directory with your database credentials:
 
 ```env
-DB_HOST=localhost
-DB_USER=your_username
-DB_PASS=your_password
 DB_NAME=eduenroll
+DB_HOST=localhost
+DB_PORT=your_port
+DB_USER=your_user
+DB_PASSWORD=your_password
+JWT=your_jwt
+ACTIVATE_LOGIN=true
 ```
 
 4. Database Setup (Sequelize)

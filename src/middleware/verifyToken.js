@@ -5,7 +5,7 @@ import { userServices } from '../services/user.services.js';
 import { mixParams } from '../utils/formatData.utils.js';
 
 export const VerifyToken = async (req, res, next) => {
-    if (!Boolean(config.ACTIVATE_LOGIN)) return next();
+    if (!Boolean(config.dataBase.activate_login)) return next();
     
     try {
         //debugger
@@ -28,7 +28,7 @@ export const VerifyToken = async (req, res, next) => {
         }
         
         // 4. Verificar el token JWT
-        const decoded = jwt.verify(token, config.JWT_SECRET);
+        const decoded = jwt.verify(token, config.jwt.jwt);
         
         // 5. Verificar que el usuario existe en la base de datos
         const { data: user, error } = await userServices.getUser({ 
