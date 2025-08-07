@@ -99,16 +99,19 @@ This project allows hands-on practice with:
 ```text
 eduenroll/
 ├── src/
-│   ├── config           # Config file   
-│   ├── controllers/     # Route handlers
-│   ├── services/        # Business logic layer
-│   ├── models/          # Sequelize models
-│   ├── utils/           # Helper functions
-│   ├── database/        # DB config and connection
-│   └── routes/          # API endpoints
-├── uploads/             # File storage (PDFs)
-├── package.json         # Project metadata
-└── README.md            # Project documentation
+│   ├── config         # Config file
+│   ├── middleware     # Express middleware for auth, error handling, logging, etc
+│   ├── controllers    # Route handlers
+│   ├── services       # Business logic layer
+│   ├── models         # Sequelize models
+│   ├── uploads        # File storage (PDFs)
+│   ├── utils          # Helper functions
+│   ├── database       # DB config and connection
+│   ├── validator/     # Contains data validation logic for incoming requests 
+│   └── routes/        # API endpoints
+│            
+├── package.json       # Project metadata
+└── README.md          # Project documentation
 ```
 
 ## API Endpoints
