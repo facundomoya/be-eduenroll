@@ -1,4 +1,4 @@
-import { authServices } from '../services/auth.services.js';
+import { authServices }  from '../services/auth.services.js';
 import { mixParams } from '../utils/formatData.utils.js';
 
 const login = async (req, res) => {
