@@ -1,5 +1,5 @@
-import { mixParams } from "../../../utils/formatData.utils.js";
-import { admin_userSchema } from "../../admin_user.schema.js";
+import { mixParams } from "../../utils/formatData.utils.js";
+import { admin_userSchema } from "../admin_user.schema.js";
 
 const admin_save = async (req, res, next) => {
   try {
