@@ -1,9 +1,8 @@
 import express from "express";
 import {userController} from "../../controllers/user.controller.js";
 import { VerifyToken } from "../../middleware/verifyToken.js";
-import upload from '../../utils/multer.utils.js';
-import { userValidator } from "../../validator/functions/admin_user.validator.js";
-import { userValidator as professorValidator } from "../../validator/functions/professor_user.validator.js";
+import { userValidator } from "../../validator/validator_functions/admin_user.validator.js";
+import { userValidator as professorValidator } from "../../validator/validator_functions/professor_user.validator.js";
 
 const route = express.Router();
 
@@ -13,13 +12,5 @@ route.post("/user/administrator", VerifyToken, userValidator.admin_save, userCon
 route.post("/user/professor", VerifyToken, professorValidator.professor_save, userController.addProfessorUser);
 route.delete("/user/:id", VerifyToken, userController.deleteUser);
 route.put("/user/:id", VerifyToken, userController.updateUser);
-route.get('/user/pdf/:userId', VerifyToken, userController.getUserPdf);
-
-route.post("/user/pdf", VerifyToken, upload, (req, res) => { //agrega el pdf a la BD y a la carpeta uploads
-  res.json({
-    message: 'Archivo subido correctamente',
-    file: req.file
-  });
-});
 
 export default route;

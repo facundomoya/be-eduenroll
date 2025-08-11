@@ -29,12 +29,6 @@ No frontend is included.
 - Role-based access control (RBAC)
 - Secure password handling
 
-### File Upload & Management
-- PDF file upload with Multer
-- File validation and storage
-- Secure file access and download
-- Error handling for file operations
-
 ---
 
 ## Technologies Used
@@ -87,11 +81,6 @@ This project allows hands-on practice with:
    - Reusable service functions
    - Scalable and testable structure
 
-5. File Operations
-   - Secure PDF upload and storage
-   - File retrieval endpoints
-   - Input validation
-
 ---
 
 ## Project Structure
@@ -104,7 +93,6 @@ eduenroll/
 │   ├── controllers    # Route handlers
 │   ├── services       # Business logic layer
 │   ├── models         # Sequelize models
-│   ├── uploads        # File storage (PDFs)
 │   ├── utils          # Helper functions
 │   ├── database       # DB config and connection
 │   ├── validator/     # Contains data validation logic for incoming requests 
@@ -134,13 +122,6 @@ GET    /degrees              → Get all degrees
 GET    /degrees/:id          → Get degree by ID  
 POST   /degrees              → Create a degree  
 PUT    /degrees/:id          → Update a degree
-```
-
-### File Operations
-
-```bash
-GET    /users/:id/pdf        → Download a users PDF
-POST   /upload               → Upload a PDF file
 ```
 
 ## Getting Started

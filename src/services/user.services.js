@@ -111,35 +111,11 @@ const updateUser = async(params) => {
   }
 };
 
-const getUserPdf = async (userId) => {
-  try {
-    const pdf = await UserPdf.findOne({ where: { userId } });
-
-    if (!pdf) {
-      return { error: 'No se encontró un PDF para este usuario' };
-    }
-
-    const filename = pdf.pdf_name;
-    const uploadsDir = path.join(__dirname, '../uploads'); // Asegúrate de que la ruta sea correcta
-    const filePath = path.join(uploadsDir, filename);
-
-    if (!fs.existsSync(filePath)) {
-      return { error: 'El archivo no existe en el servidor' };
-    }
-
-    return { data: { filePath, filename } };
-  } catch (err) {
-    return { error: 'Error al buscar el PDF en la base de datos'};
-        
-  }
-};
-
 export const userServices = {
     getAllUsers,
     addProfessorUser,
     addAdminUser,
     getUser,
-    getUserPdf,
     updateUser,
     deleteUser
 };

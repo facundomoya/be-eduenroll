@@ -1,5 +1,5 @@
-import { mixParams } from "../../utils/formatData.utils.js";
-import { professor_userSchema } from "../professor_user.schema.js";
+import { mixParams } from "../../../utils/formatData.utils.js";
+import { professor_userSchema } from "../../professor_user.schema.js";
 
 const professor_save = async (req, res, next) => {
   try {

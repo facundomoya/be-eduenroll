@@ -66,25 +66,11 @@ const updateUser = async (req, res) => {
   return res.status(200).json({ data, code: 200 });
 };
 
-const getUserPdf = async (req, res) => {
-  const { userId } = req.params;
-  
-  const { data, error } = await userServices.getUserPdf(userId);
-
-  if (error) {
-    return res.status(404).json({ error });
-  }
-
-  // Si querés mostrar el archivo en navegador, usá res.sendFile
-  return res.download(data.filePath, data.filename);
-};
-
 export const userController = {
   getAllUsers,
   addProfessorUser,
   addAdminUser,
   getUser,
-  getUserPdf,
   deleteUser,
   updateUser
 };
