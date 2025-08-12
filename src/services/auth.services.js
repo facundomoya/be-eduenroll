@@ -22,7 +22,7 @@ const login = async (params) => {
         user_name: user[0]?.user_name,
       },
       config.jwt.jwt,
-      { expiresIn: '1h' }
+      { expiresIn: '3h' }
     );
 
     return { data: { token } };

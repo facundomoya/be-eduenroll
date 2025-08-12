@@ -1,33 +1,17 @@
 import {sequelize} from '../database/connect.js';
 import User from '../models/user.model.js';
-import UserPdf from '../models/user_pdf.model.js';
 import Administrator from '../models/administrator.model.js';
 import Professor from '../models/professor.model.js';
-import { fileURLToPath } from 'url';
-import { dirname, join } from 'path'; // Importa join y dirname de path
-import { readFileSync } from 'fs';
-import path from 'path';
-import fs from 'fs';
 
-const __filename = fileURLToPath(import.meta.url); // Convierte la URL del módulo a una ruta de archivo, sirve para las funciones del PDF
-const __dirname = dirname(__filename); // Obtiene el directorio actual, sirve para las funciones del PDF
-
-const getAllUsers = async(params) => {
-  const { user_name, password } = params;
-  const data_search = {};
-
-  user_name && (data_search.user_name = user_name);
-  password && (data_search.password = password);
-
-    try {
-        const data = await User.findAll({
-          where: data_search,
-          attributes: { exclude: ['password'] }
-        });
-        return { data };
-      } catch (error) {
-        return { error: error.message };
-      }
+const getAllUsers = async() => {
+  try {
+    const data = await User.findAll({
+      attributes: { exclude: ['password'] }
+    });
+    return { data };
+  } catch (error) {
+    return { error: error.message };
+  }
 };
 
 const getUser = async(params) => {
