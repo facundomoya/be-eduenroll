@@ -28,20 +28,25 @@ const getUser = async(params) => {
 };
 
 const addProfessorUser = async(request) => {
-  let data;
+  const t = await sequelize.transaction();
+  
   try {
-    data = await User.create(request.user);
+    // Crear usuario dentro de la transacción
+    const data = await User.create(request.user, { t });
+    
+    // Crear profesor dentro de la transacción
     const data_professor = await Professor.create({
       ...request.professor,
       id_user: data.id
-    });
+    }, { t });
+    
+    // Si todo sale bien, confirmar la transacción
+    await t.commit();
+    
     return { data, data_professor };
   } catch (error) {
-    try{
-     await User.destroy({ where: { id: data.id } });
-    }catch(destroyError){
-    console.error('Error al eliminar el usuario tras fallo en creación de profesor:', destroyError);
-    }
+    // Si algo falla, revertir toda la transacción
+    await t.rollback();
     return { error: error.message };
   }   
 };
@@ -59,7 +64,7 @@ const addAdminUser = async(request) => {
       try {
         await User.destroy({ where: { id: data.id } });
       } catch (destroyError) {
-        console.error('Error al eliminar el usuario tras fallo en creación de admin:', destroyError);
+        console.error('Error to destroy user when adding admin:', destroyError);
       }
     return { error: error.message };
   }

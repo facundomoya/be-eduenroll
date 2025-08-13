@@ -7,7 +7,7 @@ const startsWithUppercase = (str) => {
 export const degreeSchema = z.object({
     degree: z.object({
         name: z.string().max(50).refine(startsWithUppercase, {
-            message: "La primera letra del nombre debe estar en mayúscula",
+            message: "The first letter of the name must be uppercase.",
         }),
         degreeId: z.number().int().positive().min(3)
     })

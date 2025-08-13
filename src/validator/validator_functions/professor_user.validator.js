@@ -12,6 +12,6 @@ const professor_save = async (req, res, next) => {
   }
 };
 
-export const userValidator = {
+export const professorValidator = {
   professor_save
 };
