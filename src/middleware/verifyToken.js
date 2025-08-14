@@ -1,6 +1,5 @@
-// middlewares/verifyToken.js
 import jwt from 'jsonwebtoken';
-import {config} from '../config/config.js';
+import {configJWT, config} from '../config/config.js';
 import { userService } from '../services/user.service.js';
 import { mixParams } from '../utils/formatData.utils.js';
 
@@ -28,7 +27,7 @@ export const VerifyToken = async (req, res, next) => {
         }
         
         // 4. Verificar el token JWT
-        const decoded = jwt.verify(token, config.jwt.jwt);
+        const decoded = jwt.verify(token, configJWT.JWT.JWT_PRIVATE_KEY);
         
         // 5. Verificar que el usuario existe en la base de datos
         const { data: user, error } = await userService.getUser({ 

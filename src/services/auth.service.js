@@ -1,5 +1,5 @@
 import jwt from 'jsonwebtoken';
-import {config} from '../config/config.js';
+import {configJWT} from '../config/config.js';
 import { userService } from './user.service.js';
 
 const login = async (params) => {
@@ -21,9 +21,10 @@ const login = async (params) => {
         id: user[0]?.id,
         user_name: user[0]?.user_name,
       },
-      config.jwt.jwt,
-      { expiresIn: '3h' }
+      configJWT.JWT.JWT_PRIVATE_KEY,
+      { expiresIn: configJWT.JWT.EXPIRES_IN }
     );
+
 
     return { data: { token } };
   } catch (error) {
