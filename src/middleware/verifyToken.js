@@ -1,7 +1,7 @@
 // middlewares/verifyToken.js
 import jwt from 'jsonwebtoken';
-import { config } from '../config/config.js';
-import { userServices } from '../services/user.services.js';
+import {config} from '../config/config.js';
+import { userService } from '../services/user.service.js';
 import { mixParams } from '../utils/formatData.utils.js';
 
 export const VerifyToken = async (req, res, next) => {
@@ -31,7 +31,7 @@ export const VerifyToken = async (req, res, next) => {
         const decoded = jwt.verify(token, config.jwt.jwt);
         
         // 5. Verificar que el usuario existe en la base de datos
-        const { data: user, error } = await userServices.getUser({ 
+        const { data: user, error } = await userService.getUser({ 
             id: decoded.id 
         });
         

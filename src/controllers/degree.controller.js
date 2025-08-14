@@ -1,9 +1,9 @@
 import { mixParams } from "../utils/formatData.utils.js";
-import { degreeServices } from "../services/degree.services.js";
+import { degreeService } from "../services/degree.service.js";
 
 const getAllDegrees = async (req, res) => {
   const params = mixParams(req);
-  const { data, error } = await degreeServices.getAllDegrees(params);
+  const { data, error } = await degreeService.getAllDegrees(params);
 
   if (error) {
     return res.status(500).json({ error, code: 500 });
@@ -14,7 +14,7 @@ const getAllDegrees = async (req, res) => {
 
 const getDegree = async (req, res) => {
   const params = mixParams(req);
-  const { data, error } = await degreeServices.getDegree(params);
+  const { data, error } = await degreeService.getDegree(params);
 
   if (error) {
     return res.status(500).json({ error, code: 500 });
@@ -25,7 +25,7 @@ const getDegree = async (req, res) => {
 
 const addDegree = async (req, res) => {
   const params = mixParams(req);
-  const { data, error } = await degreeServices.addDegree(params);
+  const { data, error } = await degreeService.addDegree(params);
 
   if (error) {
     return res.status(500).json({ error, code: 500 });
@@ -36,7 +36,7 @@ const addDegree = async (req, res) => {
 
 const updateDegree = async (req, res) => {
   const params = mixParams(req);
-  const { data, error } = await degreeServices.updateDegree(params);
+  const { data, error } = await degreeService.updateDegree(params);
 
   if (error) {
     return res.status(500).json({ error, code: 500 });

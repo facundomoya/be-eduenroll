@@ -100,7 +100,7 @@ const updateUser = async(params) => {
   }
 };
 
-export const userServices = {
+export const userService = {
     getAllUsers,
     addProfessorUser,
     addAdminUser,

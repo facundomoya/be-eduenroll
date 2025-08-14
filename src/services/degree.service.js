@@ -64,7 +64,7 @@ const addDegree = async (params) => {
   }
 };
 
-export const degreeServices = {
+export const degreeService = {
  getAllDegrees,
  getDegree,
  addDegree,
