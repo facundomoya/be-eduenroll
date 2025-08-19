@@ -1,4 +1,4 @@
-import  {mixParams}  from "../../utils/formatData.utils.js";
+import { mixParams }  from "../../utils/formatData.utils.js";
 import { degreeSchema } from "../degree.schema.js";
 
 const degree_save = async (req, res, next) => {

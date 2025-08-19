@@ -1,4 +1,4 @@
-# EduEnroll – Backend Practice Project
+# EduEnroll – Backend Project
 
 ## Project Description
 
@@ -109,8 +109,8 @@ eduenroll/
 ```bash
 GET    /users                → Get all users  
 GET    /users/:id            → Get user by ID  
-POST   /users/professor      → Create a professor  
-POST   /users/admin          → Create an admin  
+POST   /users/professor      → Create a professor user 
+POST   /users/administrator  → Create an administrator user  
 PUT    /users/:id            → Update a user  
 DELETE /users/:id            → Delete a user  
 ```

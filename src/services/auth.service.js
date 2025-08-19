@@ -1,28 +1,43 @@
 import jwt from 'jsonwebtoken';
-import {configJWT} from '../config/config.js';
+import { config } from '../config/config.js';
 import { userService } from './user.service.js';
+import { cod } from '../utils/encoder.utils.js';
 
 const login = async (params) => {
   const { user_name, password } = params;
-  const data_search = {};
-
-  user_name && (data_search.user_name = user_name);
-  password && (data_search.password = password);
 
   try {
-    const { data: user, error } = await userService.getAllUsers(data_search);
+    const { data: users, error } = await userService.getAllUsersAuth({user_name});
 
-    if (error || !user || user.length === 0) {
-      throw new Error('Credenciales inválidas');
+    if (error || !users || users.length === 0) {
+      throw new Error('Invalid credentials.');
+    }
+
+    const user = users[0];
+    if (!user) {
+      throw new Error('User not found.');
+    }
+
+    console.log(user)
+
+    if (!user.password) {
+      throw new Error('User password not found.');
+    }
+
+    const validPassword = await cod.verify(password, user.password);
+    console.log(validPassword)
+
+    if (!validPassword) {
+      throw new Error('Invalid credentials.');
     }
 
     const token = jwt.sign(
       {
-        id: user[0]?.id,
-        user_name: user[0]?.user_name,
+        id: user.id,
+        user_name: user.user_name,
       },
-      configJWT.JWT.JWT_PRIVATE_KEY,
-      { expiresIn: configJWT.JWT.EXPIRES_IN }
+      config.JWT.JWT_PRIVATE_KEY,
+      { expiresIn: config.JWT.EXPIRES_IN }
     );
 
 

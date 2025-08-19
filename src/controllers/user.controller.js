@@ -3,6 +3,7 @@ import { userService } from "../services/user.service.js";
 
 const getAllUsers = async (req, res) => {
   const params = mixParams(req);
+  
   const { data, error } = await userService.getAllUsers(params);
 
   if (error) {
@@ -14,6 +15,7 @@ const getAllUsers = async (req, res) => {
 
 const getUser = async (req, res) => {
   const params = mixParams(req);
+
   const { data, error } = await userService.getUser(params);
 
   if (error) {
@@ -25,6 +27,7 @@ const getUser = async (req, res) => {
 
 const addProfessorUser = async (req, res) => {
   const request = mixParams(req);
+
   const { data, error } = await userService.addProfessorUser(request);
 
   if (error) {

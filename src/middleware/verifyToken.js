@@ -1,5 +1,5 @@
 import jwt from 'jsonwebtoken';
-import {configJWT, config} from '../config/config.js';
+import { config } from '../config/config.js';
 import { userService } from '../services/user.service.js';
 import { mixParams } from '../utils/formatData.utils.js';
 
@@ -7,50 +7,38 @@ export const VerifyToken = async (req, res, next) => {
     if (!Boolean(config.dataBase.activate_login)) return next();
     
     try {
-        //debugger
-        // 1. Obtener todos los parámetros consolidados
         const params = mixParams(req);
         
-        // 2. Obtener el header Authorization
         const authorization = params.headers?.authorization || 
                              req.headers?.authorization;
         
         if (!authorization) {
-            throw new Error('Se necesita token de autenticación');
+            throw new Error('Authorization token not found.');
         }
         
-        // 3. Extraer el token (formato: "Bearer token")
         const token = authorization.split(' ')[1];
         
         if (!token) {
-            throw new Error('Formato de token inválido. Use: Bearer <token>');
+            throw new Error('Invalid token format. Use: Bearer <token>');
         }
+
+        const decoded = jwt.verify(token, config.JWT.JWT_PRIVATE_KEY);
         
-        // 4. Verificar el token JWT
-        const decoded = jwt.verify(token, configJWT.JWT.JWT_PRIVATE_KEY);
-        
-        // 5. Verificar que el usuario existe en la base de datos
         const { data: user, error } = await userService.getUser({ 
             id: decoded.id 
         });
-        
-      
-        
-        // 6. Adjuntar información del usuario al request
+
         req.user = {
             id: user.id,
             user_name: user.user_name,
             password: user.password,
         };
 
-        
-        
-        // 7. Pasar al siguiente middleware/controlador
         next();
         
     } catch (error) {
-        // 8. Manejar errores
-        console.error('Error en VerifyToken:', error.message);
+
+        console.error('VerifyToken error.', error.message);
         return res.status(403).json(({
             error: error.message,
             code: 403

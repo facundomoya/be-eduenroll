@@ -1,5 +1,5 @@
 import express from "express"; //para crear el router
-import {readdirSync} from "fs"; //para leer el nombre de los archivos y directorios
+import { readdirSync } from "fs"; //para leer el nombre de los archivos y directorios
 import { fileURLToPath } from "url"; //para convertir import.meta.url en una ruta usable con node
 import { dirname } from "path"; //para obtener el nombre del directorio
 

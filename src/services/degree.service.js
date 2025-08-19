@@ -1,4 +1,4 @@
-import {sequelize} from "../database/connect.js";
+import { sequelize } from "../database/connect.js";
 import Degree from "../models/degree.model.js";
 
 const getAllDegrees = async (params) => {

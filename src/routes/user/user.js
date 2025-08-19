@@ -1,5 +1,5 @@
 import express from "express";
-import {userController} from "../../controllers/user.controller.js";
+import { userController } from "../../controllers/user.controller.js";
 import { VerifyToken } from "../../middleware/verifyToken.js";
 import { adminValidator } from "../../validator/validator_functions/admin_user.validator.js";
 import { professorValidator } from "../../validator/validator_functions/professor_user.validator.js";

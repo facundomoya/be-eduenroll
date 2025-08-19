@@ -1,5 +1,5 @@
 import { DataTypes } from "sequelize";
-import {sequelize} from "../database/connect.js";
+import { sequelize } from "../database/connect.js";
 import Degree from "./degree.model.js";
 
 const Student = sequelize.define("Student", {
