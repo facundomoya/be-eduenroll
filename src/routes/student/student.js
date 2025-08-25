@@ -5,6 +5,8 @@ import { studentValidator } from "../../validator/validator_functions/student.va
 
 const route = express.Router();
 
+route.get("/student", VerifyToken, studentController.getAllStudents);
+route.get("/student/:id", VerifyToken, studentController.getStudent);
 route.post("/student", VerifyToken, studentValidator.student_save, studentController.addStudents);
 
 export default route;

@@ -10,8 +10,27 @@ const addStudents = async (req, res) => {
         return res.status(400).json({ error });
     }
     return res.status(201).json({ data });
-}
+};
+
+const getStudent = async (req, res) => {
+    const { id } = req.params;
+    const { data, error } = await studentService.getStudent(id);
+    if (error) {
+        return res.status(400).json({ error });
+    }
+    return res.status(200).json({ data });
+};
+
+const getAllStudents = async (req, res) => {
+    const {data, error} = await studentService.getAllStudents();
+    if(error){
+        return res.status(400).json({ error });
+    }
+    return res.status(200).json({ data });
+};
 
 export const studentController = {
-  addStudents
+  addStudents,
+  getAllStudents,
+  getStudent
 };

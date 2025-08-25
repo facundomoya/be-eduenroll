@@ -9,8 +9,30 @@ const addStudents = async (request) => {
   } catch (error) {
     return { error: error.message };
   }
-}
+};
+
+const getStudent = async (id) => {
+  let data;
+  try {
+    data = await Student.findByPk(id);
+    return { data };
+  } catch (error) {
+    return { error: error.message };
+  }
+};
+
+const getAllStudents = async () => {
+  let data;
+  try {
+    data = await Student.findAll();
+    return { data };
+  } catch (error) {
+    return { error: error.message };
+  }
+};
 
 export const studentService = {
-  addStudents
+  addStudents,
+  getAllStudents,
+  getStudent
 };
