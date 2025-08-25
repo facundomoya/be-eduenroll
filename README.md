@@ -124,6 +124,12 @@ POST   /degrees              → Create a degree
 PUT    /degrees/:id          → Update a degree
 ```
 
+### Student Management
+
+```bash
+POST   /student              → Create a student  
+```
+
 ## Getting Started
 
 1. Clone the Repository

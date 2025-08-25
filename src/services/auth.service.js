@@ -18,14 +18,11 @@ const login = async (params) => {
       throw new Error('User not found.');
     }
 
-    console.log(user)
-
     if (!user.password) {
       throw new Error('User password not found.');
     }
 
     const validPassword = await cod.verify(password, user.password);
-    console.log(validPassword)
 
     if (!validPassword) {
       throw new Error('Invalid credentials.');
@@ -39,7 +36,6 @@ const login = async (params) => {
       config.JWT.JWT_PRIVATE_KEY,
       { expiresIn: config.JWT.EXPIRES_IN }
     );
-
 
     return { data: { token } };
   } catch (error) {
