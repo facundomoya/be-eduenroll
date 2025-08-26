@@ -31,8 +31,30 @@ const getAllStudents = async () => {
   }
 };
 
+const updateStudent = async (params) => {
+  const { id, student } = params;
+  const data_search = {};
+
+  id && (data_search.id = id);
+
+  try {
+    const [updated] = await Student.update(student, {
+      where: data_search,
+    });
+
+    if (updated) {
+      const updatedStudent = await Student.findOne({ where: data_search });
+      return { data: updatedStudent };
+    }
+    throw new Error("Student not found");
+  } catch (error) {
+    return { error: error.message };
+  }
+};
+
 export const studentService = {
   addStudents,
   getAllStudents,
+  updateStudent,
   getStudent
 };

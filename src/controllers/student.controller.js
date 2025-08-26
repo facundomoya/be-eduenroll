@@ -29,8 +29,18 @@ const getAllStudents = async (req, res) => {
     return res.status(200).json({ data });
 };
 
+const updateStudent = async (req, res) => {
+    const params = mixParams(req);
+    const { data, error } = await studentService.updateStudent(params);
+    if (error) {
+        return res.status(400).json({ error });
+    }
+    return res.status(200).json({ data });
+};
+
 export const studentController = {
   addStudents,
   getAllStudents,
+  updateStudent,
   getStudent
 };

@@ -129,7 +129,8 @@ PUT    /degrees/:id          → Update a degree
 ```bash
 GET    /student              → Get all students
 GET    /student/:id          → Get student by ID   
-POST   /student              → Create a student  
+POST   /student              → Create a student
+PUT    /student/:id          → Update a student   
 ```
 
 ## Getting Started
