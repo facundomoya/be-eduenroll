@@ -133,6 +133,15 @@ POST   /student              → Create a student
 PUT    /student/:id          → Update a student   
 ```
 
+### Course Management
+
+```bash
+GET    /courses             → Get all courses
+GET    /course/:id          → Get course by ID   
+POST   /course              → Create a course
+PUT    /course/:id          → Update a course   
+```
+
 ## Getting Started
 
 1. Clone the Repository
