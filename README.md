@@ -2,10 +2,9 @@
 
 ## Project Description
 
-EduEnroll is a backend-only practice project focused on learning and applying modern Node.js development techniques. It simulates a basic educational management system to demonstrate the creation of RESTful APIs, the use of Sequelize ORM for database operations, and the implementation of backend architectural patterns.
+EduEnroll is a backend project focused on learning and applying modern Node.js development techniques. It simulates a basic educational management system to demonstrate the creation of RESTful APIs, the use of Sequelize ORM for database operations, and the implementation of backend architectural patterns.
 
-Note: This project is still in development and intended for backend practice purposes only.  
-No frontend is included.
+Note: No frontend is included.
 
 ---
 
@@ -25,7 +24,7 @@ No frontend is included.
 
 ### User Management
 - Multi-role authentication system
-- Support for students, professors, and administrators
+- Support for professors and administrators
 - Role-based access control (RBAC)
 - Secure password handling
 
@@ -37,16 +36,7 @@ No frontend is included.
 - Node.js – Runtime environment
 - Express.js – Web framework
 - Sequelize ORM – Database abstraction
-- MySQL / PostgreSQL – Relational database
-
-### File Handling
-- Multer – Middleware for file upload
-- Native fs and path modules
-
-### Development Tools
-- ES6 Modules
-- dotenv – Environment configuration
-- Git – Version control
+- MySQL – Relational database
 
 ---
 
@@ -70,7 +60,6 @@ This project allows hands-on practice with:
 2. Sequelize ORM
    - Defining models and associations
    - Running queries and managing data
-   - Migrations and seeders
 
 3. API Design Patterns
    - Separation of concerns
@@ -89,15 +78,15 @@ This project allows hands-on practice with:
 eduenroll/
 ├── src/
 │   ├── config         # Config file
-│   ├── middleware     # Express middleware for auth, error handling, logging, etc
+│   ├── middleware     # Express middleware for 
 │   ├── controllers    # Route handlers
 │   ├── services       # Business logic layer
 │   ├── models         # Sequelize models
 │   ├── utils          # Helper functions
 │   ├── database       # DB config and connection
-│   ├── validator/     # Contains data validation logic for incoming requests 
+│   ├── validator/     # Contains data validation 
 │   └── routes/        # API endpoints
-│            
+│           
 ├── package.json       # Project metadata
 └── README.md          # Project documentation
 ```
@@ -170,15 +159,7 @@ JWT=your_jwt
 ACTIVATE_LOGIN=true
 ```
 
-4. Database Setup (Sequelize)
-
-```bash
-npx sequelize-cli db:create
-npx sequelize-cli db:migrate
-npx sequelize-cli db:seed:all
-```
-
-5. Run the Development Server
+4. Run the Development Server
 
 ```bash
 npm run dev
@@ -188,7 +169,7 @@ npm run dev
 
 ## Development Team
 
-This project was developed by Facundo Moya, a student of **Information Systems Engineering** at the **Universidad Tecnológica Nacional - Facultad Regional Tucumán (UTN-FRT)**.
+This project was developed by Facundo Moya, student of **Information Systems Engineering** at the **Universidad Tecnológica Nacional - Facultad Regional Tucumán (UTN-FRT)**.
 
 ---
 
@@ -196,4 +177,4 @@ This project was developed by Facundo Moya, a student of **Information Systems E
 
 In progress 🚧
 
-This project is currently under development as a backend learning exercise. Contributions and improvements are welcome.
+This project is currently under development.
