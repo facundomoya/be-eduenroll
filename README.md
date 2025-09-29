@@ -25,7 +25,7 @@ Note: No frontend is included.
 ### User Management
 - Multi-role authentication system
 - Support for professors and administrators
-- Role-based access control (RBAC)
+- Role-based access control
 - Secure password handling
 
 ---
@@ -85,9 +85,12 @@ eduenroll/
 │   ├── utils          # Helper functions
 │   ├── database       # DB config and connection
 │   ├── validator/     # Contains data validation 
-│   └── routes/        # API endpoints
-│           
+│   ├── routes/        # API endpoints
+│   └── index.js       # App entry point
+│
+├── .gitignore         # Files and folders to ignore in Git           
 ├── package.json       # Project metadata
+├── package-lock.json  # Exact dependency versions (auto-generated)
 └── README.md          # Project documentation
 ```
 
