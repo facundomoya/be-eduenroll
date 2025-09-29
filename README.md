@@ -136,7 +136,7 @@ PUT    /course/:id          → Update a course
 1. Clone the Repository
 
 ```bash
-git clone https://github.com/username/eduenroll.git
+git clone https://github.com/facundomoya/eduenroll.git
 ```
 
 2. Install Dependencies
