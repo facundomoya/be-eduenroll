@@ -1,9 +1,8 @@
-import { mixParams } from "../../utils/formatData.utils.js";
 import { professor_userSchema } from "../professor_user.schema.js";
 
 const professor_save = async (req, res, next) => {
   try {
-    const data = mixParams(req);
+    const data = req.body;
     const result = professor_userSchema.safeParse(data);
     if (!result.success) return res.json(({error: result.error.issues,code:400})).status(400);
     next();

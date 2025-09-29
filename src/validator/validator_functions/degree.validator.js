@@ -1,9 +1,8 @@
-import { mixParams }  from "../../utils/formatData.utils.js";
 import { degreeSchema } from "../degree.schema.js";
 
 const degree_save = async (req, res, next) => {
   try {
-    const data = mixParams(req);
+    const data = req.body;
     const result = degreeSchema.safeParse(data);
     if (!result.success) return res.json(({error: result.error.issues,code:400})).status(400);
     next();

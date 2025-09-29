@@ -1,8 +1,8 @@
 import { Sequelize } from "sequelize";
 
-export const sequelize = new Sequelize(process.env.DB_NAME, process.env.DB_USER, process.env.DB_PASSWORD, {
+export const sequelize = new Sequelize('eduenroll', 'root', '1234', {
     dialect: "mysql",
-    host: process.env.DB_HOST,
-    port: process.env.DB_PORT,
+    host: 'localhost',
+    port: 3306,
     logging: false
 });

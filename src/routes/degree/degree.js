@@ -1,5 +1,5 @@
 import express from "express";
-import { VerifyToken } from "../../middleware/verifyToken.js";
+import  VerifyToken  from "../../middleware/verifyToken.js";
 import { degreeController } from "../../controllers/degree.controller.js";
 import { degreeValidator } from "../../validator/validator_functions/degree.validator.js";
 
