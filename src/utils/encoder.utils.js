@@ -1,12 +1,12 @@
 import bcrypt from "bcryptjs";
 
-const encoder = async (texto) => {
-  const hash = await bcrypt.hash(texto, 10);
+const encoder = async (text) => {
+  const hash = await bcrypt.hash(text, 10);
   return hash;
 }
 
-const verify = async (texto, hash) => {
-  const isValid = await bcrypt.compare(texto, hash);
+const verify = async (text, hash) => {
+  const isValid = await bcrypt.compare(text, hash);
   return isValid;
 }
 
