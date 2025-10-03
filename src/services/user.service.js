@@ -64,7 +64,16 @@ const addAdminUser = async (request) => {
 };
 
 const deleteUser = async (params) => {
-
+try {
+    const user = await User.findByPk(params.id);
+    if (!user) {
+      return { error: 'User not found' };
+    }
+    await user.destroy();
+    return { data: user };
+  } catch (error) {
+    return { error: error.message };
+  }
 };
 
 const updateUser = async (params) => {
