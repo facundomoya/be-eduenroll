@@ -29,15 +29,15 @@ const getUser = async (params) => {
   }
 };
 
-const addProfessorUser = async (request) => {
-const passwordHash = await cod.encoder(request.user.password);
+const addProfessorUser = async (body) => {
+const passwordHash = await cod.encoder(body.user.password);
   try {
     const user = await User.create({
-      ...request.user,
+      ...body.user,
       password: passwordHash
     });
     const professor = await Professor.create({
-      ...request.professor,
+      ...body.professor,
       id_user: user.id
     });
     return { data: user, professor };
@@ -46,15 +46,15 @@ const passwordHash = await cod.encoder(request.user.password);
   }
 };
 
-const addAdminUser = async (request) => {
-  const passwordHash = await cod.encoder(request.user.password);
+const addAdminUser = async (body) => {
+  const passwordHash = await cod.encoder(body.user.password);
   try {
     const user = await User.create({
-      ...request.user,
+      ...body.user,
       password: passwordHash
     });
     const admin = await Administrator.create({
-      ...request.admin,
+      ...body.admin,
       id_user: user.id
     });
     return { data: user, admin };
@@ -76,8 +76,18 @@ try {
   }
 };
 
-const updateUser = async (params) => {
-
+const updateUserPassword = async (request) => {
+try {
+    const user = await User.findByPk(request.id);
+    const newPassword = await cod.encoder(request.password);
+    if (!user) {
+      return { error: 'User not found' };
+    }
+    await user.update({ password: newPassword });
+    return { data: user };
+  } catch (error) {
+    return { error: error.message };
+  }
 };
 
 export const userService = {
@@ -85,6 +95,6 @@ export const userService = {
   addProfessorUser,
   addAdminUser,
   getUser,
-  updateUser,
+  updateUserPassword,
   deleteUser
 };

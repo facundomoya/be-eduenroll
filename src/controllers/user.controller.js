@@ -1,8 +1,8 @@
 import { userService } from "../services/user.service.js";
 
 const getAllUsers = async (req, res) => {
-  const request = req.query;
-  const { data, error} = await userService.getAllUsers(request);
+  const query = req.query;
+  const { data, error} = await userService.getAllUsers(query);
   if (error) {
     return res.status(400).json({ error });
   }
@@ -10,8 +10,8 @@ const getAllUsers = async (req, res) => {
 };
 
 const getUser = async (req, res) => {
-  const request = req.params;
-  const { data, error} = await userService.getUser(request);
+  const params = req.params;
+  const { data, error} = await userService.getUser(params);
   if (error) {
     return res.status(400).json({ error });
   }
@@ -19,8 +19,8 @@ const getUser = async (req, res) => {
 };
 
 const addProfessorUser = async (req, res) => {
-  const request = req.body;
-  const { data, error} = await userService.addProfessorUser(request);
+  const body = req.body;
+  const { data, error} = await userService.addProfessorUser(body);
   if (error) {
     return res.status(400).json({ error });
   }
@@ -28,8 +28,8 @@ const addProfessorUser = async (req, res) => {
 };
 
 const addAdminUser = async (req, res) => {
-const request = req.body;
-  const { data, error} = await userService.addAdminUser(request);
+const body = req.body;
+  const { data, error} = await userService.addAdminUser(body);
   if (error) {
     return res.status(400).json({ error });
   }
@@ -37,16 +37,21 @@ const request = req.body;
 };
 
 const deleteUser = async (req, res) => {
-const request = req.params;
-  const { data, error} = await userService.deleteUser(request);
+const params = req.params;
+  const { data, error} = await userService.deleteUser(params);
   if (error) {
     return res.status(400).json({ error });
   }
   return res.status(204).json(data);
 };
 
-const updateUser = async (req, res) => {
-
+const updateUserPassword = async (req, res) => {
+  const request = { ...req.params, ...req.body };
+  const { data, error} = await userService.updateUserPassword(request);
+  if (error) {
+    return res.status(400).json({ error });
+  }
+  return res.status(200).json(data);
 };
 
 export const userController = {
@@ -55,5 +60,5 @@ export const userController = {
   addAdminUser,
   getUser,
   deleteUser,
-  updateUser
+  updateUserPassword
 };

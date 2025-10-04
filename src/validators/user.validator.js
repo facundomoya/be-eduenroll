@@ -3,16 +3,16 @@ import User from "../models/user.model.js";
 import Administrator from "../models/administrator.model.js";
 import validateResult from "../helpers/validateResult.js";
 
-const userValidator = [
+const userCreateValidator = [
     check('user.user_name')
-    .exists().withMessage('Username is required')
-    .isLength({ min: 6 }).withMessage('Username must be at least 6 characters long')
-    .custom(async (value) => {
-        const user = await User.findOne({ where: { user_name: value } });
-        if (user) {
-            throw new Error('Username already in use');
-        }
-    }),
+        .exists().withMessage('Username is required')
+        .isLength({ min: 6 }).withMessage('Username must be at least 6 characters long')
+        .custom(async (value) => {
+            const user = await User.findOne({ where: { user_name: value } });
+            if (user) {
+                throw new Error('Username already in use');
+            }
+        }),
     check('user.password')
         .exists().withMessage('Password is required')
         .isLength({ min: 6 }).withMessage('Password must be at least 6 characters long'),
@@ -20,7 +20,7 @@ const userValidator = [
         .exists().withMessage('Administrator ID is required')
         .isInt().withMessage('Administrator ID must be an integer')
         .custom(async (value) => {
-            const admin = await Administrator.findOne({where: { administratorId: value }});
+            const admin = await Administrator.findOne({ where: { administratorId: value } });
             if (admin) {
                 throw new Error('Administrator ID already in use');
             }
@@ -39,4 +39,14 @@ const userValidator = [
     }
 ];
 
-export default userValidator;
+const userUpdateValidator = [
+    check('user.password')
+        .optional()
+        .exists().withMessage('Password is required')
+        .isLength({ min: 6 }).withMessage('Password must be at least 6 characters long'),
+    (req, res, next) => {
+        validateResult(req, res, next);
+    }
+];
+
+export { userCreateValidator, userUpdateValidator };
