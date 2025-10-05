@@ -1,16 +1,15 @@
 export const config = {
-  dataBase: {
-    host: 'localhost',
-    port: 3306,
-    user: 'root',
-    password: '1234',
-    name: 'eduenroll',
-    activate_login: true
+  database: {
+    host: process.env.DB_HOST,
+    port: process.env.DB_PORT,
+    user: process.env.DB_USER,
+    password: process.env.DB_PASSWORD,
+    name: process.env.DB_NAME,
   },
 
   JWT: {
-    JWT_PRIVATE_KEY: 'mi_clave_privada_jwt',
-    EXPIRES_IN: '1d',
-    JWT_ALGORITHM: 'HS256'
+    JWT_PRIVATE_KEY: process.env.JWT_SECRET,
+    JWT_EXPIRES_IN: process.env.JWT_EXPIRES_IN || '1h',
+    JWT_ALGORITHM: process.env.JWT_ALGORITHM
   }
 }
