@@ -78,13 +78,15 @@ This project allows hands-on practice with:
 eduenroll/
 ├── src/
 │   ├── config         # Config file
-│   ├── middleware     # Express middleware for 
+│   ├── middleware     # Express middleware functions 
 │   ├── controllers    # Route handlers
 │   ├── services       # Business logic layer
 │   ├── models         # Sequelize models
 │   ├── utils          # Helper functions
+│   ├── helpers        # Utility functions for validation and processing
+│   ├── lib            # Reusable libraries and modules
 │   ├── database       # DB config and connection
-│   ├── validator/     # Contains data validation 
+│   ├── validators     # Contains data validation 
 │   ├── routes/        # API endpoints
 │   └── index.js       # App entry point
 │
@@ -103,7 +105,7 @@ GET    /users                → Get all users
 GET    /users/:id            → Get user by ID  
 POST   /users/professor      → Create a professor user 
 POST   /users/administrator  → Create an administrator user  
-PUT    /users/:id            → Update a user  
+PUT    /users/:id            → Update user password  
 DELETE /users/:id            → Delete a user  
 ```
 
@@ -153,13 +155,16 @@ npm install
 - Create a .env file in the root directory with your database credentials:
 
 ```env
-DB_NAME=eduenroll
 DB_HOST=localhost
-DB_PORT=your_port
 DB_USER=your_user
 DB_PASSWORD=your_password
-JWT=your_jwt
-ACTIVATE_LOGIN=true
+DB_NAME=eduenroll # this is an example of database name that you can use.
+DB_PORT=your_port
+
+JWT_SECRET=your_secret_key
+JWT_EXPIRES_IN=1h
+JWT_ALGORITHM=HS256
+
 ```
 
 4. Run the Development Server
