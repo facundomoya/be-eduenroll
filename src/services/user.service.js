@@ -30,6 +30,7 @@ const getUser = async (params) => {
 };
 
 const addProfessorUser = async (body) => {
+
 const passwordHash = await cod.encoder(body.user.password);
   try {
     const user = await User.create({
