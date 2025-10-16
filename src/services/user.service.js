@@ -30,36 +30,41 @@ const getUser = async (params) => {
 };
 
 const addProfessorUser = async (body) => {
-
+const t = await sequelize.transaction();
 const passwordHash = await cod.encoder(body.user.password);
   try {
     const user = await User.create({
       ...body.user,
       password: passwordHash
-    });
+    }, { transaction: t });
     const professor = await Professor.create({
       ...body.professor,
       id_user: user.id
-    });
+    }, { transaction: t });
+    await t.commit();
     return { data: user, professor };
   } catch (error) {
+    await t.rollback();
     return { error: error.message };
   }
 };
 
 const addAdminUser = async (body) => {
+  const t = await sequelize.transaction();
   const passwordHash = await cod.encoder(body.user.password);
   try {
     const user = await User.create({
       ...body.user,
       password: passwordHash
-    });
+    }, { transaction: t });
     const admin = await Administrator.create({
       ...body.admin,
       id_user: user.id
-    });
+    }, { transaction: t });
+    await t.commit();
     return { data: user, admin };
   } catch (error) {
+    await t.rollback();
     return { error: error.message };
   }
 };
