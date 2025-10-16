@@ -34,7 +34,8 @@ const Student = sequelize.define("Student", {
     },
 }, {
     timestamps: true,
-    tableName: "student"
+    tableName: "student",
+    paranoid: true
 });
 
 Student.belongsTo(Degree, {

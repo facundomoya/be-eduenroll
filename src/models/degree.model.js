@@ -17,7 +17,8 @@ const Degree = sequelize.define("Degree", {
     },
 }, {
     timestamps: true,
-    tableName: "degree"
+    tableName: "degree",
+    paranoid: true
 });
 
 export default Degree;

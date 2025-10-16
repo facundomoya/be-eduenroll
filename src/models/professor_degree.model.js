@@ -11,7 +11,8 @@ const ProfessorDegree = sequelize.define("ProfessorDegree", {
     }
 }, {
     timestamps: true,
-    tableName: "professor_degree"
+    tableName: "professor_degree",
+    paranoid: true
 });
 
 Professor.belongsToMany(Degree, {

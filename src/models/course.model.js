@@ -17,7 +17,8 @@ const Course = sequelize.define("Course", {
     },
 }, {
     timestamps: true,
-    tableName: "course"
+    tableName: "course",
+    paranoid: true
 });
 
 export default Course;

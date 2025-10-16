@@ -18,7 +18,6 @@ const userAdministratorCreateValidator = [
     check('admin.administratorId')
         .exists().withMessage('AdministratorId is required')
         .custom(async (value) => {
-            console.log(value)
             const admin = await Administrator.findOne({where: {administratorId: value}});
             if (admin) {
                 throw new Error('AdministratorId is already in use');

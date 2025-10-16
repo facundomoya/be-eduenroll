@@ -23,6 +23,7 @@ const User = sequelize.define(
   {
     timestamps: true,
     tableName: "user",
+    paranoid: true,
   }
 );
 
