@@ -10,8 +10,9 @@ const CourseDegree = sequelize.define("course_degree", {
         primaryKey: true
     }
 }, {
-    timestamps: false,
-    tableName: "course_degree"
+    timestamps: true,
+    tableName: "course_degree",
+    paranoid: true
 });
 
 Course.belongsToMany(Degree, {

@@ -33,6 +33,7 @@ const Professor = sequelize.define(
   {
     timestamps: true,
     tableName: "professor",
+    paranoid: true,
   }
 );
 

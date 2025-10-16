@@ -10,8 +10,9 @@ const StudentCourse = sequelize.define("student_course", {
     type: DataTypes.INTEGER,
   }
 },{
-    timestamps: false,
-    tableName: "student_course"
+  timestamps: true,
+  tableName: "student_course",
+  paranoid: true
 });
 
 Student.belongsToMany(Course, { 

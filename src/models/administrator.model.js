@@ -33,6 +33,7 @@ const Administrator = sequelize.define(
   {
     timestamps: true,
     tableName: "administrator",
+    paranoid: true,
   }
 );
 
