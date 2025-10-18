@@ -1,11 +1,11 @@
 import { check } from "express-validator";
-import { passwordValidator, userNameValidator } from "./common.validator.js";
+import {commonValidator } from "./common.validator.js";
 import Administrator from "../models/administrator.model.js";
 import validateResult from "../helpers/validateResult.js";
 
 const userAdministratorCreateValidator = [
-    userNameValidator,
-    passwordValidator,
+    commonValidator.userNameValidator,
+    commonValidator.passwordValidator,
     check('admin.email')
         .exists().withMessage('Email is required')
         .isEmail().withMessage('Invalid email format')
@@ -28,4 +28,4 @@ const userAdministratorCreateValidator = [
     }
 ];
 
-export { userAdministratorCreateValidator };
+export const userAdministratorValidator = { userAdministratorCreateValidator };
