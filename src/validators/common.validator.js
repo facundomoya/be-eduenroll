@@ -22,4 +22,9 @@ const userUpdateValidator = [
     }
 ];
 
-export { userNameValidator, passwordValidator, userUpdateValidator };
+export const commonValidator =
+{
+    userNameValidator,
+    passwordValidator,
+    userUpdateValidator
+};
