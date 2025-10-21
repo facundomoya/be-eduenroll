@@ -17,6 +17,7 @@ const userAdministratorCreateValidator = [
         }),
     check('admin.administratorId')
         .exists().withMessage('AdministratorId is required')
+        .isLength({ min: 3, max: 10 }).withMessage('Administrator ID must be between 3 and 10 characters')
         .custom(async (value) => {
             const admin = await Administrator.findOne({where: {administratorId: value}});
             if (admin) {

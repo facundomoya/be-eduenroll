@@ -17,6 +17,7 @@ const userProfessorCreateValidator = [
         }),
     check('professor.professorId')
         .exists().withMessage('ProfessorId is required')
+        .isLength({ min: 3, max: 10 }).withMessage('Professor ID must be between 3 and 10 characters')
         .custom(async (value) => {
             const professor = await Professor.findOne({where: {professorId: value}});
             if (professor) {

@@ -12,6 +12,7 @@ const degreeCreateValidator = [
             }
         }),
     check('degreeId')
+        .isLength({ min: 3, max: 10 }).withMessage('Degree ID must be between 3 and 10 characters')
         .exists().withMessage('Degree ID is required')
         .custom(async (value) => {
             const degree = await Degree.findOne({ where: { degreeId: value } });
@@ -34,7 +35,8 @@ const degreeUpdateValidator = [
             }
         }),
     check('degreeId')
-        .exists().withMessage('Degree ID is required')
+        .optional()
+        .isLength({ min: 3, max: 10 }).withMessage('Degree ID must be between 3 and 10 characters')
         .custom(async (value) => {
             const degree = await Degree.findOne({ where: { degreeId: value } });
             if (degree) {

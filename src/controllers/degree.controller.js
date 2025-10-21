@@ -10,7 +10,7 @@ const getAllDegrees = async (req, res) => {
 };
 
 const getDegree = async (req, res) => {
-const params = req.params;
+  const params = req.params;
   const { data, error } = await degreeService.getDegree(params);
   if (error) {
     return res.status(400).json({ error });
@@ -19,7 +19,7 @@ const params = req.params;
 };
 
 const addDegree = async (req, res) => {
-const body = req.body;
+  const body = req.body;
   const { data, error } = await degreeService.addDegree(body);
   if (error) {
     return res.status(400).json({ error });
@@ -28,7 +28,12 @@ const body = req.body;
 };
 
 const updateDegree = async (req, res) => {
-
+  const request = { ...req.params, ...req.body };
+  const { data, error } = await degreeService.updateDegree(request);
+  if (error) {
+    return res.status(400).json({ error });
+  }
+  return res.status(200).json(data);
 };
 
 export const degreeController = {

@@ -31,7 +31,16 @@ const addDegree = async (params) => {
 };
 
 const updateDegree = async (params) => {
-  
+  try{
+    const degree = await Degree.findByPk(params.id);
+    if (!degree) {
+      return { error: "Degree not found" };
+    }
+    await degree.update(params);
+    return { data: degree };
+  }catch(error){
+    return { error: error.message };
+  }
 };
 
 export const degreeService = {
