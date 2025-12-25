@@ -6,6 +6,7 @@ import validateResult from "../helpers/validateResult.js";
 const userProfessorCreateValidator = [
     commonValidator.userNameValidator,
     commonValidator.passwordValidator,
+    commonValidator.userTypeValidator,
     check('professor.email')
         .exists().withMessage('Email is required')
         .isEmail().withMessage('Invalid email format')

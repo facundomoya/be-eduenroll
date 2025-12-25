@@ -19,6 +19,10 @@ const User = sequelize.define(
       type: DataTypes.STRING,
       allowNull: false,
     },
+    type: {
+      type: DataTypes.ENUM("0", "1"), // 0: Administrator, 1: Professor
+      allowNull: false
+    }
   },
   {
     timestamps: true,

@@ -11,6 +11,10 @@ const userNameValidator = check('user.user_name')
         }
     });
 
+const userTypeValidator = check('user.type')
+    .exists().withMessage('User type is required')
+    .isIn(['0', '1']).withMessage('User type must be either 0 (Administrator) or 1 (Professor)');
+
 const passwordValidator = check('user.password')
     .exists().withMessage('Password is required')
     .isLength({ min: 6 }).withMessage('Password must be at least 6 characters long');
@@ -26,5 +30,6 @@ export const commonValidator =
 {
     userNameValidator,
     passwordValidator,
+    userTypeValidator,
     userUpdateValidator
 };
