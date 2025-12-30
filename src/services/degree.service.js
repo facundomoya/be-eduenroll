@@ -1,6 +1,6 @@
 import Degree from "../models/degree.model.js";
 
-const getAllDegrees = async (params) => {
+const getAllDegrees = async () => {
 try {
     const degrees = await Degree.findAll();
     return { data: degrees };
@@ -21,9 +21,9 @@ const getDegree = async(params) => {
   }
 };
 
-const addDegree = async (params) => {
+const addDegree = async (body) => {
   try {
-    const degree = await Degree.create(params);
+    const degree = await Degree.create(body);
     return { data: degree };
   } catch (error) {
     return { error: error.message };

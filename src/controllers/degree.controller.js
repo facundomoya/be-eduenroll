@@ -1,8 +1,7 @@
 import { degreeService } from "../services/degree.service.js";
 
 const getAllDegrees = async (req, res) => {
-  const query = req.query;
-  const { data, error } = await degreeService.getAllDegrees(query);
+  const { data, error } = await degreeService.getAllDegrees();
   if (error) {
     return res.status(400).json({ error });
   }

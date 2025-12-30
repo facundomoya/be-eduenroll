@@ -4,8 +4,8 @@ import { courseController } from '../../controllers/course.controller.js';
 
 const route = express.Router();
 
-route.get('/courses', VerifyToken, courseController.getAllCourses);
-route.get('/course/:id', VerifyToken, courseController.getCourse);
+route.get('/courses', courseController.getAllCourses);
+route.get('/course/:id', courseController.getCourse);
 route.post('/course', VerifyToken, courseController.addCourse);
 route.put('/course/:id', VerifyToken, courseController.updateCourse);
 

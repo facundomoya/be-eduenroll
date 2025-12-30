@@ -20,8 +20,7 @@ const getStudent = async (req, res) => {
 }
 
 const getAllStudents = async (req, res) => {
-  const query = req.query;
-  const { data, error } = await studentService.getAllStudents(query);
+  const { data, error } = await studentService.getAllStudents();
   if (error) {
     return res.status(400).json({ error });
   }

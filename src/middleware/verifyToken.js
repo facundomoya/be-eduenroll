@@ -11,7 +11,7 @@ const VerifyToken = async (req, res, next) => {
 
   const { type } = jwt.decode(token);
 
-  if ( type !== "0" ) {
+  if ( type == "1" ) {
     return res.status(403).json({ message: 'Access denied for Professors' });
   }
 
