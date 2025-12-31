@@ -12,6 +12,6 @@ route.get("/user/:id", userController.getUser);
 route.post("/user/administrator", VerifyToken, userAdministratorValidator.userAdministratorCreateValidator, userController.addAdminUser);
 route.post("/user/professor", VerifyToken, userProfessorValidator.userProfessorCreateValidator, userController.addProfessorUser);
 route.delete("/user/:id", VerifyToken, userController.deleteUser);
-route.put("/user/:id", VerifyToken, commonValidator.userUpdateValidator, userController.updateUserPassword);
+route.put("/user/password/:id", VerifyToken, commonValidator.userUpdateValidator, userController.updateUserPassword);
 
 export default route;

@@ -98,30 +98,36 @@ eduenroll/
 
 ## API Endpoints
 
+### Auth Management
+
+```bash
+POST    /auth/login         → Login  
+```
+
 ### User Management
 
 ```bash
-GET    /users                → Get all users  
-GET    /users/:id            → Get user by ID  
-POST   /users/professor      → Create a professor user 
-POST   /users/administrator  → Create an administrator user  
-PUT    /users/:id            → Update user password  
-DELETE /users/:id            → Delete a user  
+GET    /users               → Get all users  
+GET    /user/:id            → Get user by ID  
+POST   /user/professor      → Create a professor user 
+POST   /user/administrator  → Create an administrator user  
+PUT    /user/password/:id   → Update user password  
+DELETE /user/:id            → Delete a user  
 ```
 
 ### Degree Management
 
 ```bash
-GET    /degrees              → Get all degrees  
-GET    /degrees/:id          → Get degree by ID  
-POST   /degrees              → Create a degree  
-PUT    /degrees/:id          → Update a degree
+GET    /degrees             → Get all degrees  
+GET    /degree/:id          → Get degree by ID  
+POST   /degree              → Create a degree  
+PUT    /degree/:id          → Update a degree
 ```
 
 ### Student Management
 
 ```bash
-GET    /student              → Get all students
+GET    /students             → Get all students
 GET    /student/:id          → Get student by ID   
 POST   /student              → Create a student
 PUT    /student/:id          → Update a student   
@@ -141,7 +147,7 @@ PUT    /course/:id          → Update a course
 1. Clone the Repository
 
 ```bash
-git clone https://github.com/facundomoya/eduenroll.git
+git clone https://github.com/facundomoya/be-eduenroll.git
 ```
 
 2. Install Dependencies

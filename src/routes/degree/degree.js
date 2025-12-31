@@ -6,7 +6,7 @@ import {degreeValidator} from "../../validators/degree.validator.js";
 
 const route = express.Router();
 
-route.get("/degree", degreeController.getAllDegrees);
+route.get("/degrees", degreeController.getAllDegrees);
 route.get("/degree/:id", degreeController.getDegree);
 route.post("/degree", VerifyToken, degreeValidator.degreeCreateValidator, degreeController.addDegree);
 route.put("/degree/:id", VerifyToken, degreeValidator.degreeUpdateValidator, degreeController.updateDegree);
