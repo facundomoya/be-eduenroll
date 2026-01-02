@@ -1,5 +1,6 @@
 import { check } from "express-validator";
 import Degree from "../models/degree.model.js";
+import ProfessorDegree from "../models/professor_degree.model.js";
 import validateResult from "../helpers/validateResult.js";
 
 const degreeCreateValidator = [
@@ -48,7 +49,32 @@ const degreeUpdateValidator = [
     }
 ];
 
+const professorDegreeValidator = [
+    check('id_professor')
+        .exists().withMessage('Professor ID is required')
+        .isInt().withMessage('Professor ID must be an integer'),
+    check('id_degree')
+        .exists().withMessage('Degree ID is required')
+        .isInt().withMessage('Degree ID must be an integer'),
+    check('id_professor')
+        .custom(async (value, { req }) => {
+            const existing = await ProfessorDegree.findOne({
+                where: {
+                    id_professor: value,
+                    id_degree: req.body.id_degree
+                }
+            });
+            if (existing) {
+                throw new Error('This professor is already linked to this degree');
+            }
+        }),
+    (req, res, next) => {
+        validateResult(req, res, next);
+    }
+];
+
 export const degreeValidator = {
     degreeCreateValidator,
-    degreeUpdateValidator
+    degreeUpdateValidator,
+    professorDegreeValidator
 };

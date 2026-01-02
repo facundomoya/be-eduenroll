@@ -1,4 +1,5 @@
 import Degree from "../models/degree.model.js";
+import ProfessorDegree from "../models/professor_degree.model.js";
 
 const getAllDegrees = async () => {
 try {
@@ -43,9 +44,19 @@ const updateDegree = async (request) => {
   }
 };
 
+const addProfessorDegree = async (body) => {
+  try {
+    const professor_degree = await ProfessorDegree.create(body);
+    return { data: professor_degree };
+  }catch (error) {
+    return { error: error.message };
+  }
+};
+
 export const degreeService = {
  getAllDegrees,
  getDegree,
  addDegree,
- updateDegree
+ updateDegree,
+ addProfessorDegree
 };
