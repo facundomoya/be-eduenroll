@@ -101,45 +101,54 @@ eduenroll/
 ### Auth Management
 
 ```bash
-POST    /auth/login         → Login  
+POST    /auth/login            → Login  
 ```
 
 ### User Management
 
 ```bash
-GET    /users               → Get all users  
-GET    /user/:id            → Get user by ID  
-POST   /user/professor      → Create a professor user 
-POST   /user/administrator  → Create an administrator user  
-PUT    /user/password/:id   → Update user password  
-DELETE /user/:id            → Delete a user  
+GET    /users                  → Get all users  
+GET    /user/:id               → Get user by ID  
+POST   /user/professor         → Create a professor user 
+POST   /user/administrator     → Create an administrator user  
+PUT    /user/password/:id      → Update user password  
+DELETE /user/:id               → Delete a user  
 ```
 
 ### Degree Management
 
 ```bash
-GET    /degrees             → Get all degrees  
-GET    /degree/:id          → Get degree by ID  
-POST   /degree              → Create a degree  
-PUT    /degree/:id          → Update a degree
+GET    /degrees                → Get all degrees  
+GET    /degree/:id             → Get degree by ID  
+POST   /degree                 → Create a degree  
+PUT    /degree/:id             → Update a degree
 ```
 
 ### Student Management
 
 ```bash
-GET    /students             → Get all students
-GET    /student/:id          → Get student by ID   
-POST   /student              → Create a student
-PUT    /student/:id          → Update a student   
+GET    /students               → Get all students
+GET    /student/:id            → Get student by ID   
+POST   /student                → Create a student
+PUT    /student/:id            → Update a student   
 ```
 
 ### Course Management
 
 ```bash
-GET    /courses             → Get all courses
-GET    /course/:id          → Get course by ID   
-POST   /course              → Create a course
-PUT    /course/:id          → Update a course   
+GET    /courses                → Get all courses
+GET    /course/:id             → Get course by ID   
+POST   /course                 → Create a course
+PUT    /course/:id             → Update a course
+```
+
+### Professor_Degree Management
+
+```bash
+GET    /professors/degree      → Get all professor_degree associations
+GET    /professor/degree/:id   → Get professor_degree by ID
+POST   /professor/degree       → Assign a degree to a professor
+PUT    /professor/degree/:id   → Update a professor_course relationship
 ```
 
 ## Getting Started

@@ -53,10 +53,47 @@ const addProfessorDegree = async (body) => {
   }
 };
 
+const getAllProfessorDegrees = async () => {
+  try {
+    const professor_degrees = await ProfessorDegree.findAll();
+    return { data: professor_degrees };
+  } catch (error) {
+    return { error: error.message };
+  }
+};
+
+const getProfessorDegree = async(params) => {
+  try {
+    const professor_degree = await ProfessorDegree.findByPk(params.id);
+    if (!professor_degree) {
+      return { error: "The relationship between professor and degree was not found" };
+    }
+    return { data: professor_degree };
+  } catch (error) {
+    return { error: error.message };
+  }
+};
+
+const updateProfessorDegree = async (request) => {
+  try{
+    const professor_degree = await ProfessorDegree.findByPk(request.id);
+    if (!professor_degree) {
+      return { error: "The relationship between professor and degree was not found" };
+    }
+    await professor_degree.update(request);
+    return { data: professor_degree };
+  }catch(error){
+    return { error: error.message };
+  }
+};
+
 export const degreeService = {
  getAllDegrees,
  getDegree,
  addDegree,
  updateDegree,
- addProfessorDegree
+ addProfessorDegree,
+ getAllProfessorDegrees,
+ getProfessorDegree,
+ updateProfessorDegree
 };
