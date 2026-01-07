@@ -18,5 +18,7 @@ route.post("/professor/degree", VerifyToken, professorDegreeValidator.professorD
 route.put("/professor/degree/:id", VerifyToken, professorDegreeValidator.professorDegreeUpdateValidator, degreeController.updateProfessorDegree);
 //routes to link course with degree
 route.post("/course/degree", VerifyToken, courseDegreeValidator.courseDegreeCreateValidator, degreeController.addCourseDegree);
+route.get("/courses/degree", degreeController.getAllCoursesDegrees);
+route.get("/course/degree/:id", degreeController.getCourseDegree);
 
 export default route;

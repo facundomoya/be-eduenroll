@@ -97,6 +97,27 @@ const addCourseDegree = async (body) => {
   }
 };
 
+const getAllCoursesDegrees = async () => {
+  try {
+    const course_degrees = await DegreeCourse.findAll();
+    return { data: course_degrees };
+  } catch(error){
+    return { error: error.message };
+  }
+};
+
+const getCourseDegree = async(params) => {
+  try {
+    const course_degree = await DegreeCourse.findByPk(params.id);
+    if (!course_degree) {
+      return { error: "The relationship between course and degree was not found" };
+    }
+    return { data: course_degree };
+  } catch (error){
+    return { error: error.message };
+  }
+};
+
 export const degreeService = {
  getAllDegrees,
  getDegree,
@@ -106,5 +127,7 @@ export const degreeService = {
  getAllProfessorDegrees,
  getProfessorDegree,
  updateProfessorDegree,
- addCourseDegree
+ addCourseDegree,
+ getAllCoursesDegrees,
+ getCourseDegree
 };
