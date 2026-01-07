@@ -1,5 +1,6 @@
 import Degree from "../models/degree.model.js";
 import ProfessorDegree from "../models/professor_degree.model.js";
+import DegreeCourse from "../models/course_degree.model.js";
 
 const getAllDegrees = async () => {
 try {
@@ -43,7 +44,7 @@ const updateDegree = async (request) => {
     return { error: error.message };
   }
 };
-
+//professor_degree services
 const addProfessorDegree = async (body) => {
   try {
     const professor_degree = await ProfessorDegree.create(body);
@@ -86,6 +87,15 @@ const updateProfessorDegree = async (request) => {
     return { error: error.message };
   }
 };
+//course_degree services
+const addCourseDegree = async (body) => {
+  try{
+    const course_degree = await DegreeCourse.create(body);
+    return { data: course_degree };
+  }catch (error){
+    return { error: error.message };
+  }
+};
 
 export const degreeService = {
  getAllDegrees,
@@ -95,5 +105,6 @@ export const degreeService = {
  addProfessorDegree,
  getAllProfessorDegrees,
  getProfessorDegree,
- updateProfessorDegree
+ updateProfessorDegree,
+ addCourseDegree
 };

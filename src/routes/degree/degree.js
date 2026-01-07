@@ -2,6 +2,8 @@ import express from "express";
 import  VerifyToken  from "../../middleware/verifyToken.js";
 import { degreeController } from "../../controllers/degree.controller.js";
 import { degreeValidator } from "../../validators/degree.validator.js";
+import { professorDegreeValidator } from "../../validators/professor_degree.validator.js";
+import { courseDegreeValidator } from "../../validators/course_degree.validator.js";
 
 const route = express.Router();
 
@@ -12,7 +14,9 @@ route.put("/degree/:id", VerifyToken, degreeValidator.degreeUpdateValidator, deg
 //routes to link professor with degree
 route.get("/professors/degree", degreeController.getAllProfessorDegrees);
 route.get("/professor/degree/:id", degreeController.getProfessorDegree);
-route.post("/professor/degree", VerifyToken, degreeValidator.professorDegreeValidator, degreeController.addProfessorDegree);
-route.put("/professor/degree/:id", VerifyToken, degreeValidator.professorDegreeUpdateValidator, degreeController.updateProfessorDegree);
+route.post("/professor/degree", VerifyToken, professorDegreeValidator.professorDegreeCreateValidator, degreeController.addProfessorDegree);
+route.put("/professor/degree/:id", VerifyToken, professorDegreeValidator.professorDegreeUpdateValidator, degreeController.updateProfessorDegree);
+//routes to link course with degree
+route.post("/course/degree", VerifyToken, courseDegreeValidator.courseDegreeCreateValidator, degreeController.addCourseDegree);
 
 export default route;
