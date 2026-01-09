@@ -156,6 +156,7 @@ PUT    /professor/degree/:id   → Update a professor_course relationship
 GET    /courses/degree         → Get all courses_degree associations
 GET    /course/degree/:id      → Get course_degree by ID
 POST   /course/degree          → Assign a course to a degree
+PUT    /course/degree/:id      → Update a course_degree relationship
 ```
 
 ## Getting Started
@@ -174,7 +175,7 @@ npm install
 
 3. Environment Configuration
 
-- Create a .env file in the root directory with your database credentials:
+- Rename the .env.template file to .env and update it with your correct database credentials.
 
 ```env
 DB_HOST=localhost
