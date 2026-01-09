@@ -96,6 +96,15 @@ const getCourseDegree = async (req, res) => {
   return res.status(200).json(data);
 };
 
+const updateCourseDegree = async (req, res) => {
+  const request = { ...req.params, ...req.body };
+  const { data, error } = await degreeService.updateCourseDegree(request);
+  if (error) {
+    return res.status(400).json({ error });
+  }
+  return res.status(200).json(data);
+};
+
 export const degreeController = {
   getAllDegrees,
   getDegree,
@@ -107,5 +116,6 @@ export const degreeController = {
   updateProfessorDegree,
   addCourseDegree,
   getAllCoursesDegrees,
-  getCourseDegree
+  getCourseDegree,
+  updateCourseDegree
 };

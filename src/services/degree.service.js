@@ -1,9 +1,10 @@
 import Degree from "../models/degree.model.js";
 import ProfessorDegree from "../models/professor_degree.model.js";
 import DegreeCourse from "../models/course_degree.model.js";
+import { UniqueConstraintError } from "sequelize";
 
 const getAllDegrees = async () => {
-try {
+  try {
     const degrees = await Degree.findAll();
     return { data: degrees };
   } catch (error) {
@@ -11,7 +12,7 @@ try {
   }
 };
 
-const getDegree = async(params) => {
+const getDegree = async (params) => {
   try {
     const degree = await Degree.findByPk(params.id);
     if (!degree) {
@@ -33,14 +34,14 @@ const addDegree = async (body) => {
 };
 
 const updateDegree = async (request) => {
-  try{
+  try {
     const degree = await Degree.findByPk(request.id);
     if (!degree) {
       return { error: "Degree not found" };
     }
     await degree.update(request);
     return { data: degree };
-  }catch(error){
+  } catch (error) {
     return { error: error.message };
   }
 };
@@ -49,7 +50,7 @@ const addProfessorDegree = async (body) => {
   try {
     const professor_degree = await ProfessorDegree.create(body);
     return { data: professor_degree };
-  }catch (error) {
+  } catch (error) {
     return { error: error.message };
   }
 };
@@ -63,7 +64,7 @@ const getAllProfessorDegrees = async () => {
   }
 };
 
-const getProfessorDegree = async(params) => {
+const getProfessorDegree = async (params) => {
   try {
     const professor_degree = await ProfessorDegree.findByPk(params.id);
     if (!professor_degree) {
@@ -76,23 +77,28 @@ const getProfessorDegree = async(params) => {
 };
 
 const updateProfessorDegree = async (request) => {
-  try{
+  try {
     const professor_degree = await ProfessorDegree.findByPk(request.id);
     if (!professor_degree) {
       return { error: "The relationship between professor and degree was not found" };
     }
     await professor_degree.update(request);
     return { data: professor_degree };
-  }catch(error){
+  } catch (error) {
+    if (error instanceof UniqueConstraintError) {
+      return {
+        error: "This professor is already linked to this degree"
+      };
+    }
     return { error: error.message };
   }
 };
 //course_degree services
 const addCourseDegree = async (body) => {
-  try{
+  try {
     const course_degree = await DegreeCourse.create(body);
     return { data: course_degree };
-  }catch (error){
+  } catch (error) {
     return { error: error.message };
   }
 };
@@ -101,33 +107,47 @@ const getAllCoursesDegrees = async () => {
   try {
     const course_degrees = await DegreeCourse.findAll();
     return { data: course_degrees };
-  } catch(error){
+  } catch (error) {
     return { error: error.message };
   }
 };
 
-const getCourseDegree = async(params) => {
+const getCourseDegree = async (params) => {
   try {
     const course_degree = await DegreeCourse.findByPk(params.id);
     if (!course_degree) {
       return { error: "The relationship between course and degree was not found" };
     }
     return { data: course_degree };
-  } catch (error){
+  } catch (error) {
+    return { error: error.message };
+  }
+};
+
+const updateCourseDegree = async (request) => {
+  try {
+    const course_degree = await DegreeCourse.findByPk(request.id);
+    if (!course_degree) {
+      return { error: "The relationship between course and degree was not found" };
+    }
+    await course_degree.update(request);
+    return { data: course_degree };
+  } catch (error) {
     return { error: error.message };
   }
 };
 
 export const degreeService = {
- getAllDegrees,
- getDegree,
- addDegree,
- updateDegree,
- addProfessorDegree,
- getAllProfessorDegrees,
- getProfessorDegree,
- updateProfessorDegree,
- addCourseDegree,
- getAllCoursesDegrees,
- getCourseDegree
+  getAllDegrees,
+  getDegree,
+  addDegree,
+  updateDegree,
+  addProfessorDegree,
+  getAllProfessorDegrees,
+  getProfessorDegree,
+  updateProfessorDegree,
+  addCourseDegree,
+  getAllCoursesDegrees,
+  getCourseDegree,
+  updateCourseDegree
 };
