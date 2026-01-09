@@ -133,6 +133,11 @@ const updateCourseDegree = async (request) => {
     await course_degree.update(request);
     return { data: course_degree };
   } catch (error) {
+    if (error instanceof UniqueConstraintError) {
+      return {
+        error: "This course is already linked to this degree"
+      };
+    }
     return { error: error.message };
   }
 };
