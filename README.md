@@ -153,10 +153,19 @@ PUT    /professor/degree/:id   → Update a professor_course relationship
 ### Course_Degree Management
 
 ```bash
-GET    /courses/degree         → Get all courses_degree associations
+GET    /courses/degree         → Get all course_degree associations
 GET    /course/degree/:id      → Get course_degree by ID
 POST   /course/degree          → Assign a course to a degree
 PUT    /course/degree/:id      → Update a course_degree relationship
+```
+
+### Professor_Course Management
+
+```bash
+GET    /professors/course      → Get all professor_course associations
+GET    /professor/course/:id   → Get professor_course by ID
+POST   /professor/course       → Assign a course to a professor
+PUT    /professor/course/:id   → Update a professor_course relationship
 ```
 
 ## Getting Started
