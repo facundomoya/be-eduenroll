@@ -2,6 +2,7 @@ import { UniqueConstraintError } from "sequelize";
 import { sequelize } from "../database/connect.js";
 import Course from "../models/course.model.js";
 import ProfessorCourse from "../models/professor_course.model.js";
+import StudentCourse from "../models/student_course.model.js";
 
 const getAllCourses = async () => {
   try {
@@ -92,6 +93,36 @@ const updateProfessorCourse = async (request) => {
     return { error: error.message };
   }
 };
+//student_course services
+const addStudentCourse = async (body) => {
+  try {
+    const student_course = await StudentCourse.create(body);
+    return { data: student_course };
+  } catch (error) {
+    return { error: error.message };
+  }
+};
+
+const getAllStudentCourses = async () => {
+  try {
+    const student_courses = await StudentCourse.findAll();
+    return { data: student_courses };
+  } catch (error) {
+    return { error: error.message };
+  }
+};
+
+const getStudentCourse = async (params) => {
+  try {
+    const student_course = await StudentCourse.findByPk(params.id);
+    if (!student_course) {
+      return { error: "StudentCourse relation not found" };
+    }
+    return { data: student_course };
+  } catch (error) {
+    return { error: error.message };
+  }
+};
 
 export const courseService = {
   getAllCourses,
@@ -101,6 +132,9 @@ export const courseService = {
   addProfessorCourse,
   getAllProfessorCourses,
   getProfessorCourse,
-  updateProfessorCourse
+  updateProfessorCourse,
+  getAllStudentCourses,
+  addStudentCourse,
+  getStudentCourse
 };
 

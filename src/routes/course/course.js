@@ -3,6 +3,7 @@ import  VerifyToken  from '../../middleware/verifyToken.js';
 import { courseController } from '../../controllers/course.controller.js';
 import { courseValidator } from '../../validators/course.validator.js';
 import { professorCourseValidator } from '../../validators/professor_course.validator.js';
+import { studentCourseValidator } from '../../validators/student_course.validator.js';
 
 const route = express.Router();
 
@@ -15,5 +16,9 @@ route.get('/professors/course', courseController.getAllProfessorCourses);
 route.get('/professor/course/:id', courseController.getProfessorCourse);
 route.post('/professor/course', VerifyToken, professorCourseValidator.professorCourseCreateValidator, courseController.addProfessorCourse);
 route.put('/professor/course/:id', VerifyToken, professorCourseValidator.professorCourseUpdateValidator, courseController.updateProfessorCourse);
+//student_course routes
+route.get('/students/course', courseController.getAllStudentCourses);
+route.get('/student/course/:id', courseController.getStudentCourse);
+route.post('/student/course', VerifyToken, studentCourseValidator.studentCourseCreateValidator, courseController.addStudentCourse);
 
 export default route;
