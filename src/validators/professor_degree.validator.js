@@ -2,12 +2,22 @@ import { check } from "express-validator";
 import { Op } from "sequelize";
 import Degree from "../models/degree.model.js";
 import ProfessorDegree from "../models/professor_degree.model.js";
+import Professor from "../models/professor.model.js";
 import validateResult from "../helpers/validateResult.js";
 
 const professorDegreeCreateValidator = [
     check('id_professor')
-        .exists().withMessage('Professor ID is required')
-        .isInt().withMessage('Professor ID must be an integer'),
+    .exists().withMessage('Professor ID is required')
+    .bail()
+    .isInt().withMessage('Professor ID must be an integer')
+    .bail()
+    .custom(async (value) => {
+        const professor = await Professor.findByPk(value);
+        if (!professor) {
+            throw new Error('Professor does not exist');
+        }
+    })
+    .bail(),
 
     check('id_degree')
         .exists().withMessage('Degree ID is required')
@@ -39,15 +49,18 @@ const professorDegreeCreateValidator = [
 ];
 
 const professorDegreeUpdateValidator = [
-    check('id_degree')
-        .exists().withMessage('Degree ID is required')
-        .isInt().withMessage('Degree ID must be an integer')
-        .custom(async (value) => {
-            const degree = await Degree.findByPk(value);
-            if (!degree) {
-                throw new Error('Degree does not exist');
-            }
-        })
+    check('id_professor')
+    .exists().withMessage('Professor ID is required')
+    .bail()
+    .isInt().withMessage('Professor ID must be an integer')
+    .bail()
+    .custom(async (value) => {
+        const professor = await Professor.findByPk(value);
+        if (!professor) {
+            throw new Error('Professor does not exist');
+        }
+    })
+    .bail()
         .custom(async (value, { req }) => {
             const professorDegree = await ProfessorDegree.findByPk(req.params.id);
             if (!professorDegree) {

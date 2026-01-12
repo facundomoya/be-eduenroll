@@ -6,15 +6,18 @@ import Professor from "../models/professor.model.js";
 import validateResult from "../helpers/validateResult.js";
 
 const professorCourseCreateValidator = [
-check('id_professor')
+ check('id_professor')
     .exists().withMessage('Professor ID is required')
+    .bail()
     .isInt().withMessage('Professor ID must be an integer')
+    .bail()
     .custom(async (value) => {
         const professor = await Professor.findByPk(value);
         if (!professor) {
             throw new Error('Professor does not exist');
         }
-    }),
+    })
+    .bail(),
 
     check('id_course')
         .exists().withMessage('Course ID is required')
@@ -46,15 +49,18 @@ check('id_professor')
 ];
 
 const professorCourseUpdateValidator = [
-    check('id_professor')
+  check('id_professor')
     .exists().withMessage('Professor ID is required')
+    .bail()
     .isInt().withMessage('Professor ID must be an integer')
+    .bail()
     .custom(async (value) => {
         const professor = await Professor.findByPk(value);
         if (!professor) {
             throw new Error('Professor does not exist');
         }
-    }),
+    })
+    .bail(),
 
     check('id_course')
         .exists().withMessage('Course ID is required')
