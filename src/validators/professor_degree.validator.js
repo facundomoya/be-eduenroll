@@ -50,29 +50,34 @@ const professorDegreeCreateValidator = [
 
 const professorDegreeUpdateValidator = [
     check('id_professor')
-    .exists().withMessage('Professor ID is required')
-    .bail()
-    .isInt().withMessage('Professor ID must be an integer')
-    .bail()
-    .custom(async (value) => {
-        const professor = await Professor.findByPk(value);
-        if (!professor) {
-            throw new Error('Professor does not exist');
-        }
-    })
-    .bail()
-        .custom(async (value, { req }) => {
-            const professorDegree = await ProfessorDegree.findByPk(req.params.id);
-            if (!professorDegree) {
-                throw new Error('ProfessorDegree relation not found');
+        .exists().withMessage('Professor ID is required')
+        .bail()
+        .isInt().withMessage('Professor ID must be an integer')
+        .bail()
+        .custom(async (value) => {
+            const professor = await Professor.findByPk(value);
+            if (!professor) {
+                throw new Error('Professor does not exist');
             }
+        }),
+
+    check('id_degree')
+        .exists().withMessage('Degree ID is required')
+        .bail()
+        .isInt().withMessage('Degree ID must be an integer')
+        .bail()
+        .custom(async (value) => {
+            const degree = await Degree.findByPk(value);
+            if (!degree) {
+                throw new Error('Degree does not exist');
+            }
+        })
+        .custom(async (value, { req }) => {
             const existing = await ProfessorDegree.findOne({
                 where: {
-                    id_professor: professorDegree.id_professor,
+                    id_professor: req.body.id_professor,
                     id_degree: value,
-                    id: {
-                        [Op.ne]: req.params.id
-                    }
+                    id: { [Op.ne]: req.params.id }
                 }
             });
 
@@ -81,10 +86,9 @@ const professorDegreeUpdateValidator = [
             }
         }),
 
-    (req, res, next) => {
-        validateResult(req, res, next);
-    }
+    (req, res, next) => validateResult(req, res, next)
 ];
+
 
 export const professorDegreeValidator = {
     professorDegreeCreateValidator,

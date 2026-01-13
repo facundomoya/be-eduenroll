@@ -59,42 +59,36 @@ const professorCourseUpdateValidator = [
         if (!professor) {
             throw new Error('Professor does not exist');
         }
+    }),
+
+  check('id_course')
+    .exists().withMessage('Course ID is required')
+    .bail()
+    .isInt().withMessage('Course ID must be an integer')
+    .bail()
+    .custom(async (value) => {
+        const course = await Course.findByPk(value);
+        if (!course) {
+            throw new Error('Course does not exist');
+        }
     })
-    .bail(),
-
-    check('id_course')
-        .exists().withMessage('Course ID is required')
-        .isInt().withMessage('Course ID must be an integer')
-        .custom(async (value) => {
-            const course = await Course.findByPk(value);
-            if (!course) {
-                throw new Error('Course does not exist');
+    .custom(async (value, { req }) => {
+        const existing = await ProfessorCourse.findOne({
+            where: {
+                id_course: value,
+                id_professor: req.body.id_professor,
+                id: { [Op.ne]: req.params.id }
             }
-        })
-        .custom(async (value, { req }) => {
-            const professorCourse = await ProfessorCourse.findByPk(req.params.id);
-            if (!professorCourse) {
-                throw new Error('ProfessorCourse relation not found');
-            }
-            const existing = await ProfessorCourse.findOne({
-                where: {
-                    id_course: professorCourse.id_course,
-                    id_professor: value,
-                    id: {
-                        [Op.ne]: req.params.id
-                    }
-                }
-            });
+        });
 
-            if (existing) {
-                throw new Error('This course is already linked to this professor');
-            }
-        }),
+        if (existing) {
+            throw new Error('This course is already linked to this professor');
+        }
+    }),
 
-    (req, res, next) => {
-        validateResult(req, res, next);
-    }
+  (req, res, next) => validateResult(req, res, next)
 ];
+
 
 export const professorCourseValidator = {
     professorCourseCreateValidator,

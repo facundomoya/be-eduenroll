@@ -4,6 +4,9 @@ import { courseController } from '../../controllers/course.controller.js';
 import { courseValidator } from '../../validators/course.validator.js';
 import { professorCourseValidator } from '../../validators/professor_course.validator.js';
 import { studentCourseValidator } from '../../validators/student_course.validator.js';
+import { existsByParam } from '../../middleware/exists.middleware.js';
+import ProfessorCourse from '../../models/professor_course.model.js';
+import StudentCourse from '../../models/student_course.model.js';
 
 const route = express.Router();
 
@@ -15,11 +18,11 @@ route.put('/course/:id', VerifyToken, courseValidator.courseUpdateValidator, cou
 route.get('/professors/course', courseController.getAllProfessorCourses);
 route.get('/professor/course/:id', courseController.getProfessorCourse);
 route.post('/professor/course', VerifyToken, professorCourseValidator.professorCourseCreateValidator, courseController.addProfessorCourse);
-route.put('/professor/course/:id', VerifyToken, professorCourseValidator.professorCourseUpdateValidator, courseController.updateProfessorCourse);
+route.put('/professor/course/:id', VerifyToken, existsByParam(ProfessorCourse, 'id', 'ProfessorCourse relation not found'), professorCourseValidator.professorCourseUpdateValidator, courseController.updateProfessorCourse);
 //student_course routes
 route.get('/students/course', courseController.getAllStudentCourses);
 route.get('/student/course/:id', courseController.getStudentCourse);
 route.post('/student/course', VerifyToken, studentCourseValidator.studentCourseCreateValidator, courseController.addStudentCourse);
-route.put('/student/course/:id', VerifyToken, studentCourseValidator.studentCourseUpdateValidator, courseController.updateStudentCourse);
+route.put('/student/course/:id', VerifyToken, existsByParam(StudentCourse, 'id', 'StudentCourse relation not found'), studentCourseValidator.studentCourseUpdateValidator, courseController.updateStudentCourse);
 
 export default route;
