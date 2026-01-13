@@ -96,6 +96,15 @@ const getStudentCourse = async (req, res) => {
     return res.status(200).json(data);
 };
 
+const updateStudentCourse = async (req, res) => {
+    const request = { ...req.params, ...req.body };
+    const { data, error } = await courseService.updateStudentCourse(request);
+    if (error) {
+        return res.status(400).json({ error });
+    }
+    return res.status(200).json(data);
+};
+
 export const courseController = {
     getAllCourses,
     getCourse,
@@ -107,5 +116,6 @@ export const courseController = {
     updateProfessorCourse,
     getAllStudentCourses,
     addStudentCourse,
-    getStudentCourse
+    getStudentCourse,
+    updateStudentCourse
 };

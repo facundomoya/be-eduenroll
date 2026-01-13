@@ -20,5 +20,6 @@ route.put('/professor/course/:id', VerifyToken, professorCourseValidator.profess
 route.get('/students/course', courseController.getAllStudentCourses);
 route.get('/student/course/:id', courseController.getStudentCourse);
 route.post('/student/course', VerifyToken, studentCourseValidator.studentCourseCreateValidator, courseController.addStudentCourse);
+route.put('/student/course/:id', VerifyToken, studentCourseValidator.studentCourseUpdateValidator, courseController.updateStudentCourse);
 
 export default route;

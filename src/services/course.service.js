@@ -124,6 +124,24 @@ const getStudentCourse = async (params) => {
   }
 };
 
+const updateStudentCourse = async (request) => {
+  try {
+    const student_course = await StudentCourse.findByPk(request.id);
+    if (!student_course) {
+      return { error: "StudentCourse relation not found" };
+    }
+    await student_course.update(request);
+    return { data: student_course };
+  } catch (error) {
+    if(error instanceof UniqueConstraintError){
+      return {
+        error: "This student is already linked to this course"
+      }
+    }
+    return { error: error.message };
+  }
+};
+
 export const courseService = {
   getAllCourses,
   getCourse,
@@ -135,6 +153,7 @@ export const courseService = {
   updateProfessorCourse,
   getAllStudentCourses,
   addStudentCourse,
-  getStudentCourse
+  getStudentCourse,
+  updateStudentCourse
 };
 

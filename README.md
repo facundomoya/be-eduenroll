@@ -168,6 +168,15 @@ POST   /professor/course       → Assign a course to a professor
 PUT    /professor/course/:id   → Update a professor_course relationship
 ```
 
+### Student_Course Management
+
+```bash
+GET    /students/course        → Get all student_course associations
+GET    /student/course/:id     → Get student_course by ID
+POST   /student/course         → Assign a student to a course
+PUT    /student/course/:id     → Update a student_course relationship
+```
+
 ## Getting Started
 
 1. Clone the Repository
