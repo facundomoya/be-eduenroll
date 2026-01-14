@@ -150,6 +150,7 @@ GET    /professor/degree/:id   → Get professor_degree by ID
 POST   /professor/degree       → Assign a degree to a professor
 PUT    /professor/degree/:id   → Update a professor_course relationship
 ```
+
 ### Course_Degree Management
 
 ```bash
@@ -224,6 +225,6 @@ This project was developed by Facundo Moya, student of **Information Systems Eng
 
 ## Project Status
 
-In progress 🚧
+Finished ✔️
 
-This project is currently under development.
+Development has been completed.
